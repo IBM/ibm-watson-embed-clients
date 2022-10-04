@@ -1,0 +1,85 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* IBM Confidential                                                  */
+
+/* OCO Source Materials                                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2001, 2018                                */
+
+/*                                                                   */
+
+/* The source code for this program is not published or otherwise    */
+
+/* divested of its trade secrets, irrespective of what has been      */
+
+/* deposited with the U. S. Copyright Office                         */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "producer-types.proto";
+
+import "matrix-types.proto";
+
+
+
+/*****************************************************************************
+
+ * This file houses protobuf interface definitions for clustering prediction *
+
+ * (ClusteringPrediction). The data structure describes the clustering of N  *
+
+ * samples to K clusters. This is done using two data members:               *
+
+ * cluster ids: a list in which the i-th element indicates the cluster id    *
+
+ *              to which the i-th sample was assigned.
+
+ * costs:       a DenseMatrix of N rows and K columns, in which the [i, j]   *
+
+ *              cell indicates the distance between sample i and cluster j.  *
+
+ *****************************************************************************/
+
+
+
+
+
+/**
+
+ * A clustering analysis generated from multiple vectors.
+
+ */
+
+message ClusteringPrediction {
+
+    repeated int32 cluster_ids                            = 1; // (required) The predicted cluster id for each sample in the input
+
+    DenseMatrix costs                                     = 2; // (required) The distance between each sample and each centroid
+
+    watson_core_data_model.common.ProducerId producer_id  = 3; // (optional) The block that produced this clustering prediction
+
+}
