@@ -1,0 +1,1209 @@
+syntax = "proto3";
+
+package watson.runtime.nlp.v0;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/runtime";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+
+
+import "producer-types.proto";
+
+import "category-types.proto";
+
+import "classification-types.proto";
+
+import "clustering-types.proto";
+
+import "concept-types.proto";
+
+import "embedding-types.proto";
+
+import "emotion-types.proto";
+
+import "entity-types.proto";
+
+import "keyword-types.proto";
+
+import "lang-detect-types.proto";
+
+import "language-types.proto";
+
+import "matrix-types.proto";
+
+import "nounphrases-types.proto";
+
+import "relation-types.proto";
+
+import "rules-types.proto";
+
+import "sentiment-types.proto";
+
+import "syntax-types.proto";
+
+import "target-mention-types.proto";
+
+import "text-primitive-types.proto";
+
+import "text-similarity-types.proto";
+
+import "topic-types.proto";
+
+import "vectorization-types.proto";
+
+
+
+message ClassificationRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message SyntaxRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    repeated string parsers = 2;
+
+}
+
+
+
+message EntityMentionsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional string language_code = 2;
+
+}
+
+
+
+message LangDetectRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message NounPhrasesRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message TargetMentionsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    repeated string targets = 2;
+
+}
+
+
+
+message DetagRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message RulesRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message CategoriesRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional bool explanation = 2;
+
+    optional int32 limit = 3;
+
+}
+
+
+
+message ConceptsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional int32 limit = 2;
+
+}
+
+
+
+message EntitiesRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message EmotionRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional bool document_emotion = 2;
+
+    repeated string target_phrases = 3;
+
+}
+
+
+
+message KeywordsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional int32 limit = 2;
+
+}
+
+
+
+message RelationsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+message SentimentRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional string language_code = 2;
+
+    optional bool document_sentiment = 3;
+
+    repeated string target_phrases = 4;
+
+    optional bool show_neutral_scores = 5;
+
+}
+
+
+
+message TopicsRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+}
+
+
+
+service NlpService {
+
+
+
+    /**
+
+     * This rpc supports 6 Modules: ['BERT', 'Transformer', 'UseSvm', 'GloveCNN', 'TFidfSvm', 'Ensemble']
+
+     * 
+
+     * BERT docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier on an string input and returns the predictions
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction
+
+     *             The predicted class label (int), confidence (float)
+
+     *             and scores (list(float)) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * Transformer docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier on an string input and returns the predictions
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction
+
+     *             The predicted class label (int), confidence (float)
+
+     *             and scores (list(float)) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * UseSvm docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier algorithm on the text and returns the predictions
+
+     *     
+
+     *     Args:
+
+     *         raw_document: str or RawDocument
+
+     *             The raw_document that needs to be classified
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction:
+
+     *             The predicted class label (str), and scores (float) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * GloveCNN docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier algorithm on the text and returns the predictions
+
+     *     
+
+     *     Args:
+
+     *         raw_document: str | watson_nlp.data_model.RawDocument
+
+     *             The raw_document that needs to be classified
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction:
+
+     *             The predicted class label (str), and scores (float) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * TFidfSvm docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier algorithm on the text and returns the predictions
+
+     *     
+
+     *     Args:
+
+     *         raw_document: str or RawDocument
+
+     *             The raw_document that needs to be classified
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction:
+
+     *             The predicted class label (str), and scores (float) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * Ensemble docstring:
+
+     * ----------------------------
+
+     *     Runs the classifier algorithm on the text and returns the predictions
+
+     *     
+
+     *     Args:
+
+     *         raw_document: str | RawDocument
+
+     *             The raw_document that needs to be classified
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction: The predicted class label (str),
+
+     *             and scores (float) for each of the M classes
+
+     * ----------------------------
+
+     **/
+
+    rpc ClassificationPredict (ClassificationRequest) returns (watson_core_data_model.nlp.ClassificationPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['IzumoTextProcessing']
+
+     * 
+
+     * IzumoTextProcessing docstring:
+
+     * ----------------------------
+
+     *     Run IzumoTextProcessing on an input document or text string.
+
+     *     
+
+     *     Args:
+
+     *         text:  watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which syntax analysis will be created.
+
+     *         parsers:  list(str), list(data_model.enums.SyntaxParser) or data_model.SyntaxParserSpec
+
+     *             Parsers used to construct syntax annotations.  Can be any of the values in the
+
+     *             data_model.enums.SyntaxParser enum or else a data_model.SyntaxParserSpec or a list
+
+     *             containing any of the following strings: 'token', 'sentence', 'lemma',
+
+     *             'part_of_speech', 'dependency'
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.SyntaxPrediction
+
+     *             SyntaxPrediction data model that contains the tokenization output.
+
+     *     
+
+     *     Notes:
+
+     *         Some syntax parsers generate others as an intermediate step and will result in those
+
+     *         syntax annotations being included.  For example, if you specify 'part_of_speech' then
+
+     *         'token' will also be produced because tokenization is required to generate parts of
+
+     *         speech.  In order to ensure that you are getting the correct annotations, however, it is
+
+     *         recommended that you explicitly specify all desired syntax annotations.
+
+     * ----------------------------
+
+     **/
+
+    rpc SyntaxPredict (SyntaxRequest) returns (watson_core_data_model.nlp.SyntaxPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 5 Modules: ['RBR', 'BERT', 'BiLSTM', 'SIRE', 'Transformer']
+
+     * 
+
+     * RBR docstring:
+
+     * ----------------------------
+
+     *     Run RBR mentions model on a given text and return predicted mentions.
+
+     *     
+
+     *     Args:
+
+     *         raw_document:  watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which mentions will be extracted.
+
+     *         language_code: str
+
+     *             Language code corresponding to the text of the raw_document. By default
+
+     *             this value will be None. If the model config doesn't include a language code, then
+
+     *             this value will be used by RBR engine during runtime. If both language_code
+
+     *             parameter and model language in model's config file exists, an error
+
+     *             will be thrown by the run method.
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntityMentionsPrediction
+
+     *             EntityMentionsPrediction with list of mentions which have information including
+
+     *             mention span, type, text.
+
+     * ----------------------------
+
+     * 
+
+     * BERT docstring:
+
+     * ----------------------------
+
+     *     Extract entity mentions from a given raw document and language code. The syntax model is
+
+     *     selected based on the language code and that yields a watson_nlp.data_model.SyntaxPrediction.
+
+     *     The syntax analysis is then used by the BERT mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *         language_code: str
+
+     *             Language code corresponding to the text of the raw_document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntityMentionsPrediction
+
+     *             The predicted entity mentions extracted from the given syntax analysis.
+
+     * ----------------------------
+
+     * 
+
+     * BiLSTM docstring:
+
+     * ----------------------------
+
+     *     Extract entity mentions from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntityMentionsPrediction
+
+     *             The predicted entity mentions extracted from the given syntax analysis.
+
+     * ----------------------------
+
+     * 
+
+     * SIRE docstring:
+
+     * ----------------------------
+
+     *     Extract entity mentions from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntityMentionsPrediction
+
+     *             EntityMentionsPrediction with list of mentions which have information including
+
+     *             mention span, type, text.
+
+     * ----------------------------
+
+     * 
+
+     * Transformer docstring:
+
+     * ----------------------------
+
+     *     Extract entity mentions from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntityMentionsPrediction
+
+     *             EntityMentionsPrediction with list of mentions which have information including
+
+     *             mention span, type, text.
+
+     * ----------------------------
+
+     **/
+
+    rpc EntityMentionsPredict (EntityMentionsRequest) returns (watson_core_data_model.nlp.EntityMentionsPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['Izumo']
+
+     * 
+
+     * Izumo docstring:
+
+     * ----------------------------
+
+     *     Run Language detection on a given text and return predicted language.
+
+     *     
+
+     *     Args:
+
+     *         raw_document:  watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which language will be identified.
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.LangDetectPrediction
+
+     *             LangDetectPrediction with the enum of the language predicted
+
+     * ----------------------------
+
+     **/
+
+    rpc LangDetectPredict (LangDetectRequest) returns (watson_core_data_model.nlp.LangDetectPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['RBR']
+
+     * 
+
+     * RBR docstring:
+
+     * ----------------------------
+
+     *     Run Noun phrases model on a given text and return predicted noun phrases.
+
+     *     
+
+     *     Args:
+
+     *         raw_document:  watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which noun phrases will be extracted.
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.NounPhrasesPrediction
+
+     *             NounPhrasesPrediction with list of noun phrases which have information including
+
+     *             noun phrase span, type, text.
+
+     * ----------------------------
+
+     **/
+
+    rpc NounPhrasesPredict (NounPhrasesRequest) returns (watson_core_data_model.nlp.NounPhrasesPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['WordRegex']
+
+     * 
+
+     * WordRegex docstring:
+
+     * ----------------------------
+
+     *     Extract the mentions for the given set of targets.
+
+     *     
+
+     *     Args:
+
+     *         raw_document:  watson_nlp.data_model.RawDocument or str
+
+     *             The raw document holding the input text.
+
+     *         targets:  dm.TargetPhrases or list(str)
+
+     *             The list of target phrases to extract mentions for.
+
+     *     
+
+     *     Returns:
+
+     *         dm.TargetMentionsPrediction
+
+     *             The extracted mention offset list for each target.
+
+     * ----------------------------
+
+     **/
+
+    rpc TargetMentionsPredict (TargetMentionsRequest) returns (watson_core_data_model.nlp.TargetMentionsPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['RBR']
+
+     * 
+
+     * RBR docstring:
+
+     * ----------------------------
+
+     *     Detag an HTML document text to obtain its detagged plain text representation.
+
+     *     
+
+     *     Args:
+
+     *         raw_document: dm.RawDocument
+
+     *             HTML encoded string. e.g. <html><body>text</body></html>
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.DetagPrediction
+
+     *             The DetagPrediction object with original html_doc, detagged text and set of offsets.
+
+     * ----------------------------
+
+     **/
+
+    rpc DetagPredict (DetagRequest) returns (watson_core_data_model.nlp.DetagPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['RBRGeneric']
+
+     * 
+
+     * RBRGeneric docstring:
+
+     * ----------------------------
+
+     *     Run RBR engine on the given document with the loaded model.
+
+     *     
+
+     *     Args:
+
+     *         raw_document:  watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which mentions will be extracted.
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.RulesPrediction
+
+     *             RulesPrediction with list of views which internally have a map of matching
+
+     *             properties.
+
+     * ----------------------------
+
+     **/
+
+    rpc RulesPredict (RulesRequest) returns (watson_core_data_model.nlp.RulesPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['ESAHierarchical']
+
+     * 
+
+     * ESAHierarchical docstring:
+
+     * ----------------------------
+
+     *     Perform categories predictions on an input document, with optional explanations
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument
+
+     *             The input document on which to perform categories predictions
+
+     *         explanation: Boolean
+
+     *             Boolean flag indicating whether or not explanations should be computed and returned
+
+     *         limit:  int
+
+     *             The maximum number of predicted categories.  If not specified then the
+
+     *             limit on the number of predicted categories defaults to 3
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.CategoriesPrediction
+
+     *             The result of categories prediction with optional explanations.
+
+     * ----------------------------
+
+     **/
+
+    rpc CategoriesPredict (CategoriesRequest) returns (watson_core_data_model.nlp.CategoriesPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['ConceptsWorkflow']
+
+     * 
+
+     * ConceptsWorkflow docstring:
+
+     * ----------------------------
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *         limit: int
+
+     *             Maximum number of concepts to return, default is 50
+
+     *     Returns:
+
+     *         watson_nlp.data_model.concepts.ConceptsPrediction
+
+     *             Concepts Prediction data model
+
+     * ----------------------------
+
+     **/
+
+    rpc ConceptsPredict (ConceptsRequest) returns (watson_core_data_model.nlp.ConceptsPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['SIRE']
+
+     * 
+
+     * SIRE docstring:
+
+     * ----------------------------
+
+     *     Extract entities from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction which is finally used by the entities model to yield
+
+     *     watson_nlp.data_model.EntitiesPrediction
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.EntitiesPrediction
+
+     *             EntitiesPrediction with list of entities which have information including
+
+     *             mention span, type, text.
+
+     * ----------------------------
+
+     **/
+
+    rpc EntitiesPredict (EntitiesRequest) returns (watson_core_data_model.nlp.EntitiesPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['AggregatedClassificationEnsemble']
+
+     * 
+
+     * AggregatedClassificationEnsemble docstring:
+
+     * ----------------------------
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *         document_emotion: bool
+
+     *             Whether to perform emotion classification at the document level or not. Default is True.
+
+     *         target_mentions: watson_nlp.data_model.TargetMentionsPrediction or list(list(tuple))
+
+     *             An optional collection of span-based targets on which to perform targeted analysis,
+
+     *             likely derived from the output of another block
+
+     *             E.g. [[(0, 1), (14, 15)], [(16, 17), (29, 30)]]
+
+     *         target_phrases: watson_nlp.data_model.TargetPhrases or list(str)
+
+     *             An optional list of target strings or collection of text-based targets
+
+     *             that will typically be provided by the user of this workflow directly.
+
+     *             Such target strings will be converted to target mentions as part of this workflow.
+
+     *     Returns:
+
+     *         watson_nlp.data_model.emotion.EmotionPrediction
+
+     *             Emotion Prediction data model for a document and zero or more targets,
+
+     *             calculated by averaging the emotion scores per sentence.
+
+     * ----------------------------
+
+     **/
+
+    rpc EmotionPredict (EmotionRequest) returns (watson_core_data_model.nlp.EmotionPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['TextRank']
+
+     * 
+
+     * TextRank docstring:
+
+     * ----------------------------
+
+     *     Perform keywords extraction on an input document
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument
+
+     *             The input document on which to perform keywords extraction
+
+     *         limit:  None or int
+
+     *             The maximum number of predicted keywords.  If not specified then the
+
+     *             limit on the number of predicted keywords defaults to None
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.KeywordsPrediction
+
+     *             The result of keywords extraction.
+
+     * ----------------------------
+
+     **/
+
+    rpc KeywordsPredict (KeywordsRequest) returns (watson_core_data_model.nlp.KeywordsPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 2 Modules: ['SIRE', 'Transformer']
+
+     * 
+
+     * SIRE docstring:
+
+     * ----------------------------
+
+     *     Extract relation mentions from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction and the used by the transformer model to yield
+
+     *     watson_nlp.data_model.RelationsPrediction.
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document.
+
+     *     Returns:
+
+     *         watson_nlp.data_model.RelationsPrediction
+
+     *             RelationsPrediction with list of relations which have information including
+
+     *             mentions, entities, text.
+
+     * ----------------------------
+
+     * 
+
+     * Transformer docstring:
+
+     * ----------------------------
+
+     *     Extract relation mentions from a given raw document. The instance's syntax model yields
+
+     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+
+     *     watson_nlp.data_model.EntityMentionsPrediction and the used by the transformer model to yield
+
+     *     watson_nlp.data_model.RelationsPrediction.
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document.
+
+     *     Returns:
+
+     *         watson_nlp.data_model.RelationsPrediction
+
+     *             RelationsPrediction with list of relations which have information including
+
+     *             mentions, entities, text.
+
+     * ----------------------------
+
+     **/
+
+    rpc RelationsPredict (RelationsRequest) returns (watson_core_data_model.nlp.RelationsPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['AggregatedSentiment']
+
+     * 
+
+     * AggregatedSentiment docstring:
+
+     * ----------------------------
+
+     *     Perform sentiment analysis on an input document, with optional targets.
+
+     *     
+
+     *     Args:
+
+     *         raw_document: dm.RawDocument | str
+
+     *             The input document on which to perform sentiment analysis
+
+     *         language_code: str, Optional
+
+     *             An optional language code for the input text, required if the model is multi-lingual
+
+     *         document_sentiment: bool
+
+     *             Whether to aggregate the document sentiment
+
+     *         target_mentions: watson_nlp.data_model.TargetMentionsPrediction, optional
+
+     *             An optional collection of span-based targets on which to perform targeted analysis,
+
+     *             likely derived from the output of another block
+
+     *         target_phrases: watson_nlp.data_model.TargetPhrases | List[str], optional
+
+     *             An optional collection of text-based targets on which to perform targeted analysis
+
+     *         show_neutral_scores:  bool
+
+     *             Return scores that would have been flattened to neutral/zero
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.SentimentPrediction
+
+     *             The result of sentiment analysis, optionally including targeted sentiment
+
+     *     
+
+     *     Note: target_mentions can be created via helpers found in the TargetMentionsPrediction
+
+     *     class (e.g., TargetMentionsPrediction.from_entities_prediction()), and are typically the
+
+     *     result of spans generated as part of the output of other blocks (e.g., mention taggers).
+
+     *     In contrast, target_phrases contains a collection of target strings that will typically be
+
+     *     provided by the user of this workflow directly.  Such target strings will be converted
+
+     *     to target mentions as part of this workflow.
+
+     * ----------------------------
+
+     **/
+
+    rpc SentimentPredict (SentimentRequest) returns (watson_core_data_model.nlp.SentimentPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['HierarchicalClustering']
+
+     * 
+
+     * HierarchicalClustering docstring:
+
+     * ----------------------------
+
+     *     Run a single document through the trained topic model. It is possible
+
+     *     that no topic will be assigned to a document if it cannot assign
+
+     *     a satisfactory cluster.
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Input document for which we would like to try to assign a topic.
+
+     *     
+
+     *     Returns:
+
+     *         topics_prediction: data_model.TopicsPrediction.
+
+     *             The predicted topic for the provided text document.
+
+     * ----------------------------
+
+     **/
+
+    rpc TopicsPredict (TopicsRequest) returns (watson_core_data_model.nlp.TopicsPrediction) {}
+
+
+
+}
