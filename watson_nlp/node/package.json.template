@@ -1,0 +1,15 @@
+ {
+  "name": "@ibm/{LIB_NAME}-runtime-client",
+  "version": "{VERSION}",
+  "author": "ibm-ai-foundation <aifound@us.ibm.com>",
+  "description": "Watson Embedded AI runtime client library for {LIB_NAME}",
+  "scripts": {
+    "test": "echo \"no tests\" && exit 0"
+  },
+  "keywords": ["nlp"],
+  "license": "apache-2.0",
+  "bugs": {
+    "url": "https://github.com/IBM/ibm-watson-embed-clients/issues"
+  },
+  "homepage": "https://github.com/IBM/ibm-watson-embed-clients"
+}
