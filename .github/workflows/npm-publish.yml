@@ -4,17 +4,25 @@
 name: Node.js Package
 
 on:
-  push
+  release:
+    types: [published]
 
 jobs:
   publish-npm:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Set release version
+        run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+      - name: Release script
+        run: VERSION="${{ env.RELEASE_VERSION }}" RELEASE_TYPE=node ./ci/release.sh
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm publish node_gen/ --dry-run
+      - run: npm publish node_dir_watson_nlp/ --dry-run
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      # - run: npm publish node_dir_other_lib/
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}

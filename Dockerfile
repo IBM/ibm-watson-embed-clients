@@ -46,12 +46,12 @@ COPY ${LIB_NAME}/protos /app/protos
 # Install grpc tools
 RUN npm install -g grpc-tools
 # Compile the protos
-RUN  mkdir node_gen && \
+RUN  mkdir node_dir && \
     grpc_tools_node_protoc -I \
-    protos --js_out=import_style=commonjs,binary:node_gen \
-    --grpc_out=grpc_js:node_gen protos/*.proto
+    protos --js_out=import_style=commonjs,binary:node_dir \
+    --grpc_out=grpc_js:node_dir protos/*.proto
 
-COPY ${LIB_NAME}/node/package.json.template /app/node_gen/package.json
+COPY ${LIB_NAME}/node/package.json.template /app/node_dir/package.json
 # Replace LIB_NAME in the package.json based on the library, also replace _ with - in LIB_NAME
-RUN sed -i "s/{LIB_NAME}/$(echo ${LIB_NAME} | sed s/_/-/g)/g" /app/node_gen/package.json
-RUN sed -i "s/{VERSION}/${NODE_RELEASE_VERSION}/g" /app/node_gen/package.json
+RUN sed -i "s/{LIB_NAME}/$(echo ${LIB_NAME} | sed s/_/-/g)/g" /app/node_dir/package.json
+RUN sed -i "s/{VERSION}/${NODE_RELEASE_VERSION}/g" /app/node_dir/package.json
