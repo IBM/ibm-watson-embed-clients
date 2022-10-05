@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package watson.runtime.nlp.v0;
+package watson.runtime.nlp.v1;
 
 option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/runtime";
 
@@ -100,16 +100,6 @@ message NounPhrasesRequest {
 
 
 
-message TargetMentionsRequest {
-
-    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
-
-    repeated string targets = 2;
-
-}
-
-
-
 message DetagRequest {
 
     optional watson_core_data_model.nlp.RawDocument raw_document = 1;
@@ -143,14 +133,6 @@ message ConceptsRequest {
     optional watson_core_data_model.nlp.RawDocument raw_document = 1;
 
     optional int32 limit = 2;
-
-}
-
-
-
-message EntitiesRequest {
-
-    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
 
 }
 
@@ -692,46 +674,6 @@ service NlpService {
 
     /**
 
-     * This rpc supports 1 Modules: ['WordRegex']
-
-     * 
-
-     * WordRegex docstring:
-
-     * ----------------------------
-
-     *     Extract the mentions for the given set of targets.
-
-     *     
-
-     *     Args:
-
-     *         raw_document:  watson_nlp.data_model.RawDocument or str
-
-     *             The raw document holding the input text.
-
-     *         targets:  dm.TargetPhrases or list(str)
-
-     *             The list of target phrases to extract mentions for.
-
-     *     
-
-     *     Returns:
-
-     *         dm.TargetMentionsPrediction
-
-     *             The extracted mention offset list for each target.
-
-     * ----------------------------
-
-     **/
-
-    rpc TargetMentionsPredict (TargetMentionsRequest) returns (watson_core_data_model.nlp.TargetMentionsPrediction) {}
-
-
-
-    /**
-
      * This rpc supports 1 Modules: ['RBR']
 
      * 
@@ -883,48 +825,6 @@ service NlpService {
      **/
 
     rpc ConceptsPredict (ConceptsRequest) returns (watson_core_data_model.nlp.ConceptsPrediction) {}
-
-
-
-    /**
-
-     * This rpc supports 1 Modules: ['SIRE']
-
-     * 
-
-     * SIRE docstring:
-
-     * ----------------------------
-
-     *     Extract entities from a given raw document. The instance's syntax model yields
-
-     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
-
-     *     watson_nlp.data_model.EntityMentionsPrediction which is finally used by the entities model to yield
-
-     *     watson_nlp.data_model.EntitiesPrediction
-
-     *     Args:
-
-     *         raw_document: watson_nlp.data_model.RawDocument or str
-
-     *             Raw text of the document
-
-     *     
-
-     *     Returns:
-
-     *         watson_nlp.data_model.EntitiesPrediction
-
-     *             EntitiesPrediction with list of entities which have information including
-
-     *             mention span, type, text.
-
-     * ----------------------------
-
-     **/
-
-    rpc EntitiesPredict (EntitiesRequest) returns (watson_core_data_model.nlp.EntitiesPrediction) {}
 
 
 
