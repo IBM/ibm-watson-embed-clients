@@ -20,7 +20,7 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: npm publish node_dir_watson_nlp/ --dry-run
+      - run: npm publish node_dir_watson_nlp/ --access-public
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       # - run: npm publish node_dir_other_lib/
