@@ -8,7 +8,7 @@
   "author": "IBM",
   "dependencies": {
     "@grpc/grpc-js": "^1.6.10",
-    "@ibm/watson-nlp-runtime-client": "0.0.1",
+    "@ibm/watson-nlp-runtime-client": "1.0.0",
     "google-protobuf": "^3.21.0"
   }
 }
