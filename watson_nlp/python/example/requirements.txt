@@ -1,1 +1,1 @@
-watson_nlp_runtime_client
+watson_nlp_runtime_client==1.0.0
