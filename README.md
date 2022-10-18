@@ -1,7 +1,7 @@
 # Watson Embedded AI runtime client libraries
 
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/IBM/ibm-watson-embed-clients)
+[![version][version-badge]][releases]
 
 - [Watson Embedded AI runtime client libraries](#watson-embedded-ai-runtime-client-libraries)
   - [Watson NLP](#watson-nlp)
@@ -40,3 +40,6 @@ npm i @ibm/watson-nlp-runtime-client
 
 #### Example
 https://github.com/IBM/ibm-watson-embed-clients/tree/main/watson_nlp/node/example
+
+[version-badge]: https://img.shields.io/github/v/release/IBM/ibm-watson-embed-clients
+[releases]: https://github.com/IBM/ibm-watson-embed-clients/releases
