@@ -566,9 +566,11 @@ service NlpService {
 
      * ----------------------------
 
-     *     Extract entity mentions from a given raw document. The instance's syntax model yields
+     *     Extract entity mentions from a given raw document and language code. The syntax model is
 
-     *     a watson_nlp.data_model.SyntaxPrediction which is then used by the mentions model to yield
+     *     selected based on the language code and that yields a watson_nlp.data_model.SyntaxPrediction.
+
+     *     The syntax analysis is then used by the BERT mentions model to yield
 
      *     watson_nlp.data_model.EntityMentionsPrediction
 
@@ -580,15 +582,17 @@ service NlpService {
 
      *             Raw text of the document
 
+     *         language_code: str
+
+     *             Language code corresponding to the text of the raw_document
+
      *     
 
      *     Returns:
 
      *         watson_nlp.data_model.EntityMentionsPrediction
 
-     *             EntityMentionsPrediction with list of mentions which have information including
-
-     *             mention span, type, text.
+     *             The predicted entity mentions extracted from the given syntax analysis.
 
      * ----------------------------
 
@@ -1004,7 +1008,7 @@ service NlpService {
 
      * ----------------------------
 
-     *     Perform sentiment analysis on an input document, with optional targets.
+     *     Perform sentiment analysis on an input document, with Optional targets.
 
      *     
 
@@ -1018,21 +1022,21 @@ service NlpService {
 
      *             An optional language code for the input text, required if the model is multi-lingual
 
-     *         document_sentiment: bool
+     *         document_sentiment: bool, Optional
 
      *             Whether to aggregate the document sentiment
 
-     *         target_mentions: watson_nlp.data_model.TargetMentionsPrediction, optional
+     *         target_mentions: watson_nlp.data_model.TargetMentionsPrediction, Optional
 
      *             An optional collection of span-based targets on which to perform targeted analysis,
 
      *             likely derived from the output of another block
 
-     *         target_phrases: watson_nlp.data_model.TargetPhrases | List[str], optional
+     *         target_phrases: watson_nlp.data_model.TargetPhrases | List[str], Optional
 
      *             An optional collection of text-based targets on which to perform targeted analysis
 
-     *         show_neutral_scores:  bool
+     *         show_neutral_scores:  bool, Optional
 
      *             Return scores that would have been flattened to neutral/zero
 
