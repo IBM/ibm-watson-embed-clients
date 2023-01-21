@@ -94,16 +94,6 @@ message ClassificationPrediction {
 
 
 
-/**
 
-* A Classification Training record consisting of a single train instance.
 
-*/
 
-message ClassificationTrainRecord {
-
-    string text            = 1; // (required) Text to be classified
-
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
-
-}

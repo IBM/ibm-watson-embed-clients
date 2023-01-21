@@ -42,68 +42,44 @@ option java_multiple_files = true;
 
 import "producer-types.proto";
 
+import "matrix-types.proto";
 
 
-/***************************************************************************
 
- * This file houses protobuf interface definitions for NLC *
+/*****************************************************************************
 
- **************************************************************************/
+ * This file houses protobuf interface definitions for clustering prediction *
+
+ * (ClusteringPrediction). The data structure describes the clustering of N  *
+
+ * samples to K clusters. This is done using two data members:               *
+
+ * cluster ids: a list in which the i-th element indicates the cluster id    *
+
+ *              to which the i-th sample was assigned.
+
+ * costs:       a DenseMatrix of N rows and K columns, in which the [i, j]   *
+
+ *              cell indicates the distance between sample i and cluster j.  *
+
+ *****************************************************************************/
+
+
 
 
 
 /**
 
- * A single hierarchical NLC prediction.
+ * A clustering analysis generated from multiple vectors.
 
  */
 
+message ClusteringPrediction {
 
+    repeated int32 cluster_ids                            = 1; // (required) The predicted cluster id for each sample in the input
 
- enum ModelType {
+    DenseMatrix costs                                     = 2; // (required) The distance between each sample and each centroid
 
-    MULTI_TARGET            = 0; // multi output
-
-    SINGLE_TARGET           = 1; // single output
-
-}
-
-
-
- message ClassInfo {
-
-    string class_name = 1; // (required) Predicted relevant class name
-
-    float  confidence = 2; // (required) The confidence-like score of this prediction in [0, 1]
-
-}
-
-/**
-
- * A Classification prediction generated from a document and consisting multiple classes.
-
- */
-
-message ClassificationPrediction {
-
-    repeated ClassInfo classes                           = 1; // (required) predicted classes with confidence scores
-
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this Classification prediction
-
-}
-
-
-
-/**
-
-* A Classification Training record consisting of a single train instance.
-
-*/
-
-message ClassificationTrainRecord {
-
-    string text            = 1; // (required) Text to be classified
-
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
+    watson_core_data_model.common.ProducerId producer_id  = 3; // (optional) The block that produced this clustering prediction
 
 }

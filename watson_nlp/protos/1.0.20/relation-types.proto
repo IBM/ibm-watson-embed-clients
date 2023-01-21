@@ -1,0 +1,145 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2019                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "entity-types.proto";
+
+import "producer-types.proto";
+
+
+
+/*******************************************************************************
+
+ * This file houses protobuf interface definitions for relation types.         *
+
+ *******************************************************************************/
+
+
+
+
+
+/*-- RelationMentions --------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a relationship mention.
+
+ **/
+
+message RelationMention {
+
+    string type                                          = 1; // (Required) Relationship Type. Examples include 'parentOf', 'locatedAt'.
+
+    EntityMention mention1                               = 2; // (Required) First Entity Mention in a pair for a relation type
+
+    EntityMention mention2                               = 3; // (Required) Second Entity Mention in a pair for a relation type
+
+    float confidence                                     = 4; // (Optional) Confidence score in the range [0, 1]. Defaults to 0.0
+
+    watson_core_data_model.common.ProducerId producer_id = 5; // (Optional) Information about the block that produced this prediction
+
+    string subtype                                       = 6; // (Optional) Sub-type of the relationship (if defined by the type system)
+
+    string text                                          = 7; // (Optional) Text of the whole document which contains mention1, mention2
+
+}
+
+
+
+/**
+
+ * Representation of a list of relationship mentions.
+
+ **/
+
+message RelationMentionsPrediction {
+
+    repeated RelationMention relation_mentions           = 1; // (Required) List of relationship mentions
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (Optional) Information about the block that produced
+
+                                                              // this prediction
+
+}
+
+
+
+/*-- Relations --------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a relation between entities.
+
+ * Entity representation with RelationMention is subject to change with a possible EntityPrediction
+
+ **/
+
+message Relation {
+
+    Entity entity1                             = 1; // (Required) First entity of the relation
+
+    Entity entity2                             = 2; // (Required) Second entity of the relation
+
+    repeated RelationMention relation_mentions = 3; // (Required) List of relationship mentions where
+
+                                                    // all mention1 entity mentions belong to entity1
+
+                                                    // all mention2 entity mentions belong to entity2
+
+                                                    // all relation mentions have same type
+
+    string type                                = 4; // (Required) Relationship Type. Examples include
+
+                                                    // 'parentOf', 'locatedAt'.
+
+    float confidence                           = 5; // (Optional) Confidence score in the range [0, 1]. Defaults to 0.0
+
+}
+
+
+
+/**
+
+ * Representation of a list of relations between entities.
+
+ **/
+
+message RelationsPrediction {
+
+    repeated Relation relations                          = 1; // (Required) List of relations between entities
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (Optional) Information about the block that produced this prediction
+
+}

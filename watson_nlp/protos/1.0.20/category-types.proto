@@ -46,7 +46,7 @@ import "producer-types.proto";
 
 /***************************************************************************
 
- * This file houses protobuf interface definitions for NLC *
+ * This file houses protobuf interface definitions for text categorization *
 
  **************************************************************************/
 
@@ -54,41 +54,25 @@ import "producer-types.proto";
 
 /**
 
- * A single hierarchical NLC prediction.
+ * A single hierarchical category label and confidence.
 
  */
 
+message Category {
 
+    repeated string labels            = 1; // (required) Labels in our category hierarchy listed sequentially
 
- enum ModelType {
+    float score                       = 2; // (required) The confidence-like score of this prediction in [0, 1]
 
-    MULTI_TARGET            = 0; // multi output
-
-    SINGLE_TARGET           = 1; // single output
+    repeated RelevantText explanation = 3; // (optional) The explanatory n-grams extracted for this category
 
 }
 
 
 
- message ClassInfo {
+message RelevantText {
 
-    string class_name = 1; // (required) Predicted relevant class name
-
-    float  confidence = 2; // (required) The confidence-like score of this prediction in [0, 1]
-
-}
-
-/**
-
- * A Classification prediction generated from a document and consisting multiple classes.
-
- */
-
-message ClassificationPrediction {
-
-    repeated ClassInfo classes                           = 1; // (required) predicted classes with confidence scores
-
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this Classification prediction
+    string text = 1; // (required) A single explanatory n-gram extracted from the text
 
 }
 
@@ -96,14 +80,14 @@ message ClassificationPrediction {
 
 /**
 
-* A Classification Training record consisting of a single train instance.
+ * A categories prediction generated from a document and consisting multiple category labels.
 
-*/
+ */
 
-message ClassificationTrainRecord {
+message CategoriesPrediction {
 
-    string text            = 1; // (required) Text to be classified
+    repeated Category categories                         = 1; // (required) The predicted categories
 
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this categories prediction
 
 }

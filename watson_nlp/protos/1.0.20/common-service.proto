@@ -60,8 +60,6 @@ message ClassificationRequest {
 
     optional watson_core_data_model.nlp.RawDocument raw_document = 1;
 
-    optional bool if_multithread = 2;
-
 }
 
 
@@ -200,7 +198,7 @@ service NlpService {
 
     /**
 
-     * This rpc supports 7 Modules: ['BERT', 'Transformer', 'UseSvm', 'GloveCNN', 'TFidfSvm', 'Ensemble', 'GenericEnsemble']
+     * This rpc supports 6 Modules: ['BERT', 'Transformer', 'UseSvm', 'GloveCNN', 'TFidfSvm', 'Ensemble']
 
      * 
 
@@ -262,17 +260,9 @@ service NlpService {
 
      *     Args:
 
-     *         raw_document: str | watson_nlp.data_model.RawDocument
+     *         raw_document: str or RawDocument
 
-     *             The raw_document in str or dm.RawDocument format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
-
-     *         syntax_prediction: SyntaxPrediction
-
-     *             The text in the dm.SyntaxPrediciton format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
+     *             The raw_document that needs to be classified
 
      *     
 
@@ -298,15 +288,7 @@ service NlpService {
 
      *         raw_document: str | watson_nlp.data_model.RawDocument
 
-     *             The raw_document in str or dm.RawDocument format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
-
-     *         syntax_prediction: SyntaxPrediction
-
-     *             The text in the dm.SyntaxPrediciton format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
+     *             The raw_document that needs to be classified
 
      *     
 
@@ -330,17 +312,9 @@ service NlpService {
 
      *     Args:
 
-     *         raw_document: str | watson_nlp.data_model.RawDocument
+     *         raw_document: str or RawDocument
 
-     *             The raw_document in str or dm.RawDocument format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
-
-     *         syntax_prediction: SyntaxPrediction
-
-     *             The text in the dm.SyntaxPrediciton format that needs to be classified.
-
-     *             the model will only predict when either raw_document or syntax_prediction is passed.
+     *             The raw_document that needs to be classified
 
      *     
 
@@ -367,36 +341,6 @@ service NlpService {
      *         raw_document: str | RawDocument
 
      *             The raw_document that needs to be classified
-
-     *     
-
-     *     Returns:
-
-     *         watson_nlp.data_model.ClassificationPrediction: The predicted class label (str),
-
-     *             and scores (float) for each of the M classes
-
-     * ----------------------------
-
-     * 
-
-     * GenericEnsemble docstring:
-
-     * ----------------------------
-
-     *     Runs the classifier algorithm on the text and returns the predictions
-
-     *     
-
-     *     Args:
-
-     *         raw_document: str | RawDocument
-
-     *             The raw_document that needs to be classified
-
-     *         if_multithread: bool
-
-     *             The flag to specify whether the base classifier's prediction will run in parallelism
 
      *     
 

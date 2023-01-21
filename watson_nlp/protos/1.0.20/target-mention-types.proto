@@ -8,7 +8,7 @@
 
 /*                                                                   */
 
-/* (C) Copyright IBM Corp. 2001, 2018                                */
+/* (C) Copyright IBM Corp. 2001, 2019                                */
 
 /*                                                                   */
 
@@ -42,53 +42,33 @@ option java_multiple_files = true;
 
 import "producer-types.proto";
 
-
-
-/***************************************************************************
-
- * This file houses protobuf interface definitions for NLC *
-
- **************************************************************************/
+import "text-primitive-types.proto";
 
 
 
 /**
 
- * A single hierarchical NLC prediction.
+ * Set of targets to search for mention matches of
 
  */
 
+message TargetPhrases {
 
-
- enum ModelType {
-
-    MULTI_TARGET            = 0; // multi output
-
-    SINGLE_TARGET           = 1; // single output
+    repeated string targets = 1; // (required) The target strings to match
 
 }
 
 
-
- message ClassInfo {
-
-    string class_name = 1; // (required) Predicted relevant class name
-
-    float  confidence = 2; // (required) The confidence-like score of this prediction in [0, 1]
-
-}
 
 /**
 
- * A Classification prediction generated from a document and consisting multiple classes.
+ * Single set of matched target mention spans
 
  */
 
-message ClassificationPrediction {
+message TargetMentions {
 
-    repeated ClassInfo classes                           = 1; // (required) predicted classes with confidence scores
-
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this Classification prediction
+    repeated Span spans = 1; // (required) The set of mention spans for this target
 
 }
 
@@ -96,14 +76,14 @@ message ClassificationPrediction {
 
 /**
 
-* A Classification Training record consisting of a single train instance.
+ * A set of matched spans for a set of spans
 
-*/
+ */
 
-message ClassificationTrainRecord {
+message TargetMentionsPrediction {
 
-    string text            = 1; // (required) Text to be classified
+    repeated TargetMentions targets                      = 1; // (required) The set of targets
 
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this target mentions prediction
 
 }

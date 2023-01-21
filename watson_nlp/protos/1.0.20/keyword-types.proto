@@ -42,68 +42,48 @@ option java_multiple_files = true;
 
 import "producer-types.proto";
 
+import "text-primitive-types.proto";
 
 
-/***************************************************************************
 
- * This file houses protobuf interface definitions for NLC *
+/***************************************************************************************
 
- **************************************************************************/
+ * This file houses protobuf interface definitions for keyword / keyphrase extraction  *
+
+ **************************************************************************************/
 
 
 
 /**
 
- * A single hierarchical NLC prediction.
+ * A single keyword extraction from a document
 
  */
 
+message Keyword {
 
+    string text            = 1; // (required) The canonical text for this keyword
 
- enum ModelType {
+    float relevance        = 2; // (required) The relevance of this keyword to the document in the [0, 1] range
 
-    MULTI_TARGET            = 0; // multi output
+    repeated Span mentions = 3; // (required) The spans within the document where the keyword occurs
 
-    SINGLE_TARGET           = 1; // single output
-
-}
-
-
-
- message ClassInfo {
-
-    string class_name = 1; // (required) Predicted relevant class name
-
-    float  confidence = 2; // (required) The confidence-like score of this prediction in [0, 1]
+    uint32 count           = 4; // (required) The number of occurences of this keyword in the document
 
 }
+
+
 
 /**
 
- * A Classification prediction generated from a document and consisting multiple classes.
+ * The full set of keywords extracted for a document
 
  */
 
-message ClassificationPrediction {
+message KeywordsPrediction {
 
-    repeated ClassInfo classes                           = 1; // (required) predicted classes with confidence scores
+    repeated Keyword keywords                            = 1; // (required) The list of all keywords
 
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this Classification prediction
-
-}
-
-
-
-/**
-
-* A Classification Training record consisting of a single train instance.
-
-*/
-
-message ClassificationTrainRecord {
-
-    string text            = 1; // (required) Text to be classified
-
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this keywords prediction
 
 }

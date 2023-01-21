@@ -1,0 +1,53 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2020                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "language-types.proto";
+
+import "producer-types.proto";
+
+
+
+/*******************************************************************************
+
+ * This file houses common data-structure related to lang detect             *
+
+ ******************************************************************************/
+
+
+
+message LangDetectPrediction {
+
+    LangCode lang_code = 1; // Language code
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this Lang detect prediction
+
+}

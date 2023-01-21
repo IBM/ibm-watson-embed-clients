@@ -44,9 +44,9 @@ import "producer-types.proto";
 
 
 
-/***************************************************************************
+/**************************************************************************
 
- * This file houses protobuf interface definitions for NLC *
+ * This file houses protobuf interface definitions for concept prediction *
 
  **************************************************************************/
 
@@ -54,41 +54,17 @@ import "producer-types.proto";
 
 /**
 
- * A single hierarchical NLC prediction.
+ * A single concept.
 
  */
 
+message Concept {
 
+    string text             = 1; // (required) The canonical text name for this concept
 
- enum ModelType {
+    float relevance         = 2; // (required) Relevance of this concept to the doc in [0, 1]
 
-    MULTI_TARGET            = 0; // multi output
-
-    SINGLE_TARGET           = 1; // single output
-
-}
-
-
-
- message ClassInfo {
-
-    string class_name = 1; // (required) Predicted relevant class name
-
-    float  confidence = 2; // (required) The confidence-like score of this prediction in [0, 1]
-
-}
-
-/**
-
- * A Classification prediction generated from a document and consisting multiple classes.
-
- */
-
-message ClassificationPrediction {
-
-    repeated ClassInfo classes                           = 1; // (required) predicted classes with confidence scores
-
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this Classification prediction
+    string dbpedia_resource = 3; // (optional) Text of URL link to the corresponding DBPedia resource
 
 }
 
@@ -96,14 +72,14 @@ message ClassificationPrediction {
 
 /**
 
-* A Classification Training record consisting of a single train instance.
+ * A concepts prediction generated from a document and consisting multiple concepts.
 
-*/
+ */
 
-message ClassificationTrainRecord {
+message ConceptsPrediction {
 
-    string text            = 1; // (required) Text to be classified
+    repeated Concept concepts                            = 1; // (required) The predicted concepts
 
-    repeated string labels = 2; // (required) Class labels to be learnt for the text
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this concepts prediction
 
 }

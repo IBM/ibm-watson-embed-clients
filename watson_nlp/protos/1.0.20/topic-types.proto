@@ -1,0 +1,79 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2019                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+
+
+import "producer-types.proto";
+
+import "text-primitive-types.proto";
+
+
+
+message Topic {
+
+    string name = 1; // text of n concatenated words to describe generally topic (topic title)e.g., "business check account"
+
+    float score = 2; // numeric describing the cohesiveness of the text to the topic title
+
+    uint32 size = 3; // number of documents that are classified as this topic
+
+    repeated NGram ngrams = 4; // a collection of n-grams [['bank', 'account', 'savings'], ['register', 'checking'], ...]
+
+    repeated TopicPhrase snippets = 5; // (optional) partial sentences from the corpus
+
+    repeated TopicPhrase sentences = 6; // (optional) full sentences from the corpus
+
+    watson_core_data_model.common.ProducerId producer_id = 7; //(optional) The block that produced this topic model (TopicModeler block)
+
+}
+
+
+
+// for each document TopicPhrase is a set of strings coming from the original document
+
+message TopicPhrase {
+
+    string text = 1; // "Wells Fargo Blocks my bank Account so..."
+
+    float distance = 2; // how far is the sentence from the topic center
+
+}
+
+
+
+// This is for multiple topic assignment. If Topic "Prediction" is required for multiple topic assignment (for a single doc), this class may not be needed.
+
+message TopicsPrediction {
+
+    repeated Topic topics = 1; // repeated Topics
+
+}

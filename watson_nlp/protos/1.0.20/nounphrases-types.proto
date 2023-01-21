@@ -1,0 +1,71 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2019                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "producer-types.proto";
+
+import "text-primitive-types.proto";
+
+
+
+/*-- Noun Phrases ------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a noun phrase and any associated annotations.
+
+ **/
+
+ message NounPhrase {
+
+    Span span = 1; // (required) Location of this noun phrase
+
+}
+
+
+
+
+
+/**
+
+ * The full set of noun phrases extracted for a document
+
+ */
+
+ message NounPhrasesPrediction {
+
+    repeated NounPhrase noun_phrases                     = 1; // The list of all noun phrases
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this noun phrases prediction
+
+}
