@@ -10,8 +10,6 @@ option java_multiple_files = true;
 
 
 
-import "producer-types.proto";
-
 import "category-types.proto";
 
 import "classification-types.proto";
@@ -34,7 +32,11 @@ import "language-types.proto";
 
 import "matrix-types.proto";
 
+import "modelpointer.proto";
+
 import "nounphrases-types.proto";
+
+import "producer-types.proto";
 
 import "relation-types.proto";
 
@@ -51,6 +53,14 @@ import "text-primitive-types.proto";
 import "text-similarity-types.proto";
 
 import "topic-types.proto";
+
+import "traininginforequest.proto";
+
+import "traininginforesponse.proto";
+
+import "trainingjob.proto";
+
+import "trainingstatus.proto";
 
 import "vectorization-types.proto";
 

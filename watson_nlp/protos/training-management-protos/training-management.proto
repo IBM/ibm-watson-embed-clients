@@ -1,0 +1,12 @@
+syntax = "proto3";
+package tmi;
+
+import "traininginforequest.proto";
+import "traininginforesponse.proto";
+
+
+service TrainingManagement {
+
+  rpc GetTrainingStatus(watson_core_data_model.runtime.TrainingInfoRequest) returns (watson_core_data_model.runtime.TrainingInfoResponse) {}
+
+}
