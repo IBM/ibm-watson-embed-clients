@@ -142,6 +142,42 @@ message EntityMentionsPrediction {
 
 
 
+/**
+
+* An Entity Mention Annotation consisting of text, type and span of mention.
+
+*/
+
+message EntityMentionAnnotation {
+
+    string text                                          = 1; // (required) String respresentation of text of mention
+
+    string type                                          = 2; // (required) String representation of the mention label, aka type
+
+    Span location                                        = 3; // (required) Location span with begin and end offsets for the mention annotation
+
+}
+
+
+
+/**
+
+* A train record consisting of raw text and entity mentions.
+
+*/
+
+message EntityMentionsTrainRecord {
+
+    string text                                          = 1; // (required) The text of the train record
+
+    repeated EntityMentionAnnotation mentions            = 2; // (required) Entity mention annotations found in the text
+
+    string language                                      = 3; // (optional) Language of the associated text in train record
+
+}
+
+
+
 /*-- Disambiguation ---------------------------------------------------------*/
 
 
