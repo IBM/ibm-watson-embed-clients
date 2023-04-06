@@ -14,8 +14,8 @@ COPY ${LIB_NAME}/python/requirements.txt /app/requirements.txt
 RUN true && \
     pip install pip --upgrade && \
     pip install twine && \
-    pip install -r /app/requirements.txt && \
-    true
+    pip install -r /app/requirements.txt
+
 # Copy all files needed for proto compilation
 COPY ${LIB_NAME}/protos /app/protos
 COPY ${LIB_NAME}/python/generated /app/generated
@@ -26,6 +26,7 @@ COPY ${LIB_NAME}/python/setup_client.py /app/setup_client.py
 RUN python3 -m grpc_tools.protoc \
     -I protos --python_out=generated \
     --grpc_python_out=generated protos/*.proto
+
 # Create the wheel
 RUN python3 setup_client.py bdist_wheel clean --all
 
