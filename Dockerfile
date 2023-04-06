@@ -7,6 +7,7 @@ FROM python:3.9-slim as python-client
 
 ARG LIB_NAME
 ARG PYTHON_RELEASE_VERSION
+ARG RELEASE_DRY_RUN
 
 WORKDIR /app
 # Install build dependencies
@@ -19,8 +20,9 @@ RUN true && \
 # Copy all files needed for proto compilation
 COPY ${LIB_NAME}/protos /app/protos
 COPY ${LIB_NAME}/python/generated /app/generated
-# Copy files for client wheel packaging
+# Copy files for client wheel packaging and publishing
 COPY ${LIB_NAME}/python/setup_client.py /app/setup_client.py
+COPY ci/publish.sh /app/publish.sh
 
 # Compile the protos
 RUN python3 -m grpc_tools.protoc \
@@ -28,6 +30,8 @@ RUN python3 -m grpc_tools.protoc \
     --grpc_python_out=generated protos/*.proto
 # Create the wheel
 RUN python3 setup_client.py bdist_wheel clean --all
+
+RUN /app/publish.sh
 
 ## Node client #####################################################
 #

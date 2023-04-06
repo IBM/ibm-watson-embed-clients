@@ -16,14 +16,13 @@ echo "Releasing ${VERSION}"
 # Dispatch to the various types of releases
 if [ "$RELEASE_TYPE" == "py" ]
 then
-    #this dir holds all wheel files to push later
-    mkdir dist
     docker build -t watson_nlp-python:"$VERSION" . \
-    --target=python-client \
-    --build-arg PYTHON_RELEASE_VERSION="$VERSION" \
-    --build-arg LIB_NAME=watson_nlp
-    # copy the generated wheel file
-    docker create --name=watson_nlp-pytmp watson_nlp-python:"$VERSION" && docker cp watson_nlp-pytmp:/app/dist/. dist/ && docker rm watson_nlp-pytmp
+        --target=python-client \
+        --build-arg PYTHON_RELEASE_VERSION="$VERSION" \
+        --build-arg LIB_NAME=watson_nlp \
+        --build-arg PYPI_TOKEN=${PYPI_TOKEN:-""} \
+        --build-arg RELEASE_DRY_RUN=${RELEASE_DRY_RUN:-"false"} \
+        --build-arg PYTHON_VERSION=${PYTHON_VERSION:-"3.7"}
 elif [ "$RELEASE_TYPE" == "node" ]
 then
     docker build -t watson_nlp-node:"$VERSION" . \
