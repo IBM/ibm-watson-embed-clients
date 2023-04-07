@@ -26,7 +26,6 @@ COPY ${LIB_NAME}/python/setup_client.py /app/setup_client.py
 RUN python3 -m grpc_tools.protoc \
     -I protos --python_out=generated \
     --grpc_python_out=generated protos/*.proto
-
 # Create the wheel
 RUN python3 setup_client.py bdist_wheel clean --all
 
