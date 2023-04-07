@@ -28,6 +28,7 @@ then
     echo "Publishing to PyPi"
     if [ "$PYPI_TOKEN" != "" ]
     then
+        echo "PYPI token exists"
         un_arg="--username __token__"
         pw_arg="--password $PYPI_TOKEN"
     fi
