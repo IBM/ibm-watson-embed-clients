@@ -14,8 +14,7 @@ name: Upload Python Package
 
 on:
   pull_request:
-    types:
-      - edited
+    types: [opened, reopened, edited]
 
 permissions:
   contents: read
