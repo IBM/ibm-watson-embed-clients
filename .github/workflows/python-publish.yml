@@ -27,4 +27,4 @@ jobs:
     - name: Release and Publish package
       run: VERSION="${{ env.RELEASE_VERSION }}" RELEASE_TYPE=py ./ci/release.sh
       env:
-        PYPI_TOKEN: ${{ secrets.PYPI_API_TOKEN }}
+        PYPI_TOKEN: ${{ secrets.TEST_PYPI_API_TOKEN }}
