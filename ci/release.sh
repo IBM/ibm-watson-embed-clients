@@ -33,7 +33,7 @@ then
         pw_arg="--password $PYPI_TOKEN"
     fi
     pip install twine
-    twine upload $un_arg $pw_arg dist/*
+    twine upload --repository testpypi $un_arg $pw_arg dist/*
 elif [ "$RELEASE_TYPE" == "node" ]
 then
     docker build -t watson_nlp-node:"$VERSION" . \
