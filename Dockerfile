@@ -14,8 +14,8 @@ COPY ${LIB_NAME}/python/requirements.txt /app/requirements.txt
 RUN true && \
     pip install pip --upgrade && \
     pip install twine && \
-    pip install -r /app/requirements.txt && \
-    true
+    pip install -r /app/requirements.txt
+
 # Copy all files needed for proto compilation
 COPY ${LIB_NAME}/protos /app/protos
 COPY ${LIB_NAME}/python/generated /app/generated
