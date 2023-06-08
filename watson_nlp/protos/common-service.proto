@@ -198,6 +198,16 @@ message SentimentRequest {
 
 
 
+message TargetsSentimentRequest {
+
+    optional watson_core_data_model.nlp.RawDocument raw_document = 1;
+
+    optional string language_code = 2;
+
+}
+
+
+
 message TopicsRequest {
 
     optional watson_core_data_model.nlp.RawDocument raw_document = 1;
@@ -212,7 +222,7 @@ service NlpService {
 
     /**
 
-     * This rpc supports 7 Modules: ['BERT', 'Transformer', 'UseSvm', 'GloveCNN', 'TFidfSvm', 'Ensemble', 'GenericEnsemble']
+     * This rpc supports 7 Modules: ['BERT', 'Transformer', 'UseSvm', 'GloveCNN', 'TFidfSvm', 'GenericEnsemble', 'Ensemble']
 
      * 
 
@@ -366,32 +376,6 @@ service NlpService {
 
      * 
 
-     * Ensemble docstring:
-
-     * ----------------------------
-
-     *     Runs the classifier algorithm on the text and returns the predictions
-
-     *     
-
-     *     Args:
-
-     *         raw_document: str | RawDocument
-
-     *             The raw_document that needs to be classified
-
-     *     
-
-     *     Returns:
-
-     *         watson_nlp.data_model.ClassificationPrediction: The predicted class label (str),
-
-     *             and scores (float) for each of the M classes
-
-     * ----------------------------
-
-     * 
-
      * GenericEnsemble docstring:
 
      * ----------------------------
@@ -409,6 +393,34 @@ service NlpService {
      *         if_multithread: bool
 
      *             The flag to specify whether the base classifier's prediction will run in parallelism
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.ClassificationPrediction: The predicted class label (str),
+
+     *             and scores (float) for each of the M classes
+
+     * ----------------------------
+
+     * 
+
+     * Ensemble docstring:
+
+     * ----------------------------
+
+     *     
+
+     *     Runs the workflow on the text and returns the predictions
+
+     *     
+
+     *     Args:
+
+     *         raw_document: str or RawDocument
+
+     *             The raw_document that needs to be classified
 
      *     
 
@@ -572,13 +584,11 @@ service NlpService {
 
      * ----------------------------
 
-     *     Extract entity mentions from a given raw document and language code. The syntax model is
+     *     Extract Entity Mentions from a given raw document. The syntax model is
 
      *     selected based on the language code and that yields a watson_nlp.data_model.SyntaxPrediction.
 
-     *     The syntax analysis is then used by the BERT mentions model to yield
-
-     *     watson_nlp.data_model.EntityMentionsPrediction
+     *     The syntax analysis is then used by the entity mention model to yield the output.
 
      *     
 
@@ -716,13 +726,11 @@ service NlpService {
 
      * ----------------------------
 
-     *     Extract entity mentions from a given raw document and language code. The syntax model is
+     *     Extract Entity Mentions from a given raw document. The syntax model is
 
      *     selected based on the language code and that yields a watson_nlp.data_model.SyntaxPrediction.
 
-     *     The syntax analysis is then used by the BERT mentions model to yield
-
-     *     watson_nlp.data_model.EntityMentionsPrediction
+     *     The syntax analysis is then used by the entity mention model to yield the output.
 
      *     
 
@@ -816,7 +824,7 @@ service NlpService {
 
      *         watson_nlp.data_model.DetagPrediction
 
-     *             The DetagPrediction object with original html_doc, detagged text and set of offsets.
+     *             The DetagPrediction object with original html_doc, detagged text, set of offsets mapping detagged text to the original HTML, and a list of HTML tag offsets in the detagged text.
 
      * ----------------------------
 
@@ -1191,6 +1199,50 @@ service NlpService {
      **/
 
     rpc SentimentPredict (SentimentRequest) returns (watson_core_data_model.nlp.SentimentPrediction) {}
+
+
+
+    /**
+
+     * This rpc supports 1 Modules: ['SequenceTransformerTSA']
+
+     * 
+
+     * SequenceTransformerTSA docstring:
+
+     * ----------------------------
+
+     *     Extract targets sentiment from a given raw document. The syntax model is
+
+     *     selected based on the language code and that yields a watson_nlp.data_model.SyntaxPrediction.
+
+     *     The syntax analysis is then used by the targets sentiment model to yield the output.
+
+     *     
+
+     *     Args:
+
+     *         raw_document: watson_nlp.data_model.RawDocument or str
+
+     *             Raw text of the document
+
+     *         language_code: str
+
+     *             Language code corresponding to the text of the raw_document
+
+     *     
+
+     *     Returns:
+
+     *         watson_nlp.data_model.TargetsSentimentPrediction
+
+     *             The predicted targets sentiment extracted from the given text.
+
+     * ----------------------------
+
+     **/
+
+    rpc TargetsSentimentPredict (TargetsSentimentRequest) returns (watson_core_data_model.nlp.TargetsSentimentPrediction) {}
 
 
 

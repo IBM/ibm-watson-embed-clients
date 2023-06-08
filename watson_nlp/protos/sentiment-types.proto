@@ -100,26 +100,6 @@ message Sentiment {
 
 
 
-/**
-
- * This message used to be called `SentimentPrediction`. It's only used by the now-deprecated CNN sentiment blocks and
-
- * should not be adopted by any others.
-
- * The new `SentimentPrediction` message is the return type to be used for all `sentiment`-type models.
-
- */
-
-message DeprecatedCNNSentimentPrediction {
-
-    Sentiment document_sentiment                         = 1; // (required) The sentiment prediction for the entire document
-
-    repeated Sentiment targeted_sentiments               = 2; // (optional) Sentiment predictions for specific targets within the document
-
-    watson_core_data_model.common.ProducerId producer_id = 3; // (optional) The block that produced this sentiment prediction
-
-}
-
 
 
 /**
@@ -163,24 +143,6 @@ message AggregateSentimentPrediction {
 }
 
 
-
-/**
-
- * Sentiment predictions for input targets.
-
- *
-
- * Deprecated, please remove in future major version bump.
-
- */
-
-message TargetedSentimentPrediction {
-
-    repeated AggregateSentimentPrediction sentiment_predictions = 1; //Individual atomic sentiments that went into producing the aggregated sentiment
-
-    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this sentiment prediction
-
-}
 
 
 
@@ -232,33 +194,7 @@ message AggregatedSentiment {
 
 
 
-/**
 
- * A sentiment towards a specific sentence.
-
- */
-
-message SentenceSentimentPrediction {
-
-    float score                                          = 1;// (required) The score of the sentiment in the [-1, 1] range
-
-    SentimentLabel label                                 = 2; // (required) The trinary classification label
-
-    SentimentMention sentiment_mention                   = 3; // (required) Individual atomic sentiments that went into producing the aggregated sentiment
-
-    watson_core_data_model.common.ProducerId producer_id = 4; // The block that produced this sentiment prediction
-
-}
-
-
-
-/**
-
- * The sentiments towards explicit targets in the document.
-
- * This message replaces the old TargetedSentimentPrediction message, which will be removed
-
- */
 
 message TargetsSentimentPrediction {
 

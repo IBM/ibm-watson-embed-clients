@@ -172,9 +172,9 @@ message EntityMentionsTrainRecord {
 
     repeated EntityMentionAnnotation mentions            = 2; // (required) Entity mention annotations found in the text
 
-    string language                                      = 3; // (optional) Language of the associated text in train record
+    string language_code                                 = 3; // (optional) Language of the associated text in train record
 
-    uint32 id                                            = 4; // (optional) The ID of the train record
+    uint64 id                                            = 4; // (optional) The ID of the train record
 
 }
 

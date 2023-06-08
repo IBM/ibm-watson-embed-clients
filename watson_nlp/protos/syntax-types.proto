@@ -420,6 +420,16 @@ message SyntaxPrediction {
 
 
 
+
+
+message HTMLTagSpansList {
+
+    repeated Span span_list                              = 1;
+
+}
+
+
+
 /**
 
  * Representation of an HTML document.
@@ -443,5 +453,15 @@ message DetagPrediction {
                                                               // text[2] -> html[6]
 
     watson_core_data_model.common.ProducerId producer_id = 4; // (optional) Block that produced these annotations
+
+    repeated int32 tag_offsets                           = 5; // (optional) Offsets where the original HTML tags were located. Specifically, they point to the end of a tag (the index after ">" in "<tag>Text</tag>", so `tag_offsets = [4, 14]`). 
+
+                                                              // When detagging, multiple HTML tags could point to the same offset (for example when tags are nested "<title><p>This is text</title></p>"), which is why we have removed duplicates in this list.
+
+
+
+    map<string, HTMLTagSpansList> tag_names_to_spans     = 6; // (optional) A mapping of tag names to all the locations of such tag in the HTML document, represented as a list of spans. Mainly exposed for debugging purposes.
+
+                                                              // For example: `{'p': [(10, 16), (20, 22)]}` would tell us that the opening tag '<p>' is located at indices 10 and 20, and that the end tag '</p>'s are located at positions 16 and 22, closing the corresponding tags at 10 and 20, respectively.
 
 }
