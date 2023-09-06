@@ -12,6 +12,8 @@ option java_multiple_files = true;
 
 import "category-types.proto";
 
+import "chat-summarization-types.proto";
+
 import "classification-types.proto";
 
 import "clustering-types.proto";
@@ -47,6 +49,8 @@ import "sentiment-types.proto";
 import "syntax-types.proto";
 
 import "target-mention-types.proto";
+
+import "text-generation-types.proto";
 
 import "text-primitive-types.proto";
 

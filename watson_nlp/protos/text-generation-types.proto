@@ -1,0 +1,81 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2023                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+
+
+import "producer-types.proto";
+
+
+
+/**
+
+ * Syntax analysis parsers that can be invoked.
+
+ **/
+
+enum StopReason {
+
+    NOT_FINISHED            = 0; // Possibly more tokens to be streamed
+
+    MAX_TOKENS              = 1; // Maximum requested tokens reached
+
+    EOS_TOKEN               = 2; // End-of-sequence token encountered
+
+    CANCELLED               = 3; // Request cancelled by client
+
+    TIME_LIMIT              = 4; // Time limit reached
+
+    STOP_SEQUENCE           = 5; // Stop sequence encountered
+
+    ERROR                   = 6; // Decoding error
+
+}
+
+
+
+/**
+
+ * A text generation prediction from an input prompt.
+
+ */
+
+message TextGenerationResult {
+
+    string text                                          = 1; // (required) The generated text
+
+    StopReason stop_reason                               = 2; // (optional) Reason as to why prediction stopped
+
+    uint64 generated_token_count                         = 3; // (optional) Length of generated tokens sequence
+
+    watson_core_data_model.common.ProducerId producer_id = 4; // (optional) The block that produced this GenerationPrediction
+
+}
