@@ -1,0 +1,39 @@
+
+
+/*------------------------------------------------------------------------------
+
+ * AUTO GENERATED
+
+ *----------------------------------------------------------------------------*/
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.runtime;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/runtime";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+
+
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+
+
+message TrainingJob {
+
+
+
+  /*-- fields --*/
+
+  string training_id = 1;
+
+  string model_name = 2;
+
+}

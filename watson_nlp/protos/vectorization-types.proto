@@ -1,0 +1,125 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* IBM Confidential                                                  */
+
+/* OCO Source Materials                                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2001, 2020                                */
+
+/*                                                                   */
+
+/* The source code for this program is not published or otherwise    */
+
+/* divested of its trade secrets, irrespective of what has been      */
+
+/* deposited with the U. S. Copyright Office                         */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "matrix-types.proto";
+
+import "producer-types.proto";
+
+
+
+/***************************************************************************
+
+ * This file houses protobuf interface definitions for vectorization       *
+
+ * related data structures. It is important to recognize that in Watson    *
+
+ * NLP, embeddings are dense vectors and vectorizations are sparse vectors.*
+
+ * This the key distinction between the two, even though they seem very    *
+
+ * related.                                                                *
+
+ *                                                                         *
+
+ * IMPORTANT: While they both wrap sparse matrices, it is very important   *
+
+ *            to avoid conflating vectorization / VectorizationPrediction. *
+
+ *            In general,  you should think of the Vectorization as a      *
+
+ *            lookup table, usually mapping the vocabulary to vectors or   *
+
+ *            housing a training result. In contrast, a                    *
+
+ *            VectorizationPrediction is the result of encoding an input   *
+
+ *            text into sparse vectors, which may or may not be            *
+
+ *            accomplished through application of the data matrix house    *
+
+ *            in Vectorization. Not all Vectorization blocks will have a   *
+
+ *            corresponding Vectorization type, but in general, all of     *
+
+ *            them will be able to leverage a model to generate            *
+
+ *            VectorizationPrediction objects.                             *
+
+ *                                                                         *
+
+ *            For convenience, we represent sparse matrices in CSR format. *
+
+ *            VectorizationPrediction objects may be constructed using     *
+
+ *            other sparse matrix formats, but will be converted to CSR    *
+
+ *            format anytime data model objects are created.               *
+
+ **************************************************************************/
+
+
+
+
+
+// [Unused until further notice]
+
+message Vectorization {
+
+    SparseMatrix data = 1; // Actual vectorization matrix, e.g., sparse word embedding vocab -> vec mat
+
+    map<string, uint32> vocab_to_idx = 2; // Mapping from strings, e.g., n-grams -> row indices
+
+    watson_core_data_model.common.ProducerId producer_id = 3; // (optional) The block that produced this vectorization
+
+}
+
+
+
+// Note: One day we may want to add spans to VectorizationPredictions, but for now we do not.
+
+message VectorizationPrediction {
+
+    SparseMatrix data = 1; // (required) result of vectorizing a text, e.g., n-grams
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) The block that produced this vectorization prediction
+
+}

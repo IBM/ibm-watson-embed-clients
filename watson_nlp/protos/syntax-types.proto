@@ -1,0 +1,467 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* Licensed Materials - Property of IBM                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2019                                      */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "producer-types.proto";
+
+import "text-primitive-types.proto";
+
+
+
+/************************************************************************
+
+ * This file houses protobuf interface definitions for syntax analysis. *
+
+ ************************************************************************/
+
+
+
+/*-- Tokens -----------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a token and associated annotations.
+
+ **/
+
+message Token {
+
+    Span span                    = 1; // (required) Location of the token
+
+    string lemma                 = 3; // (optional) Lemma form of the token
+
+    PartOfSpeech part_of_speech  = 4; // (optional) Universal part-of-speech tag
+
+    Dependency dependency        = 5; // (optional) Universal dependency parse annotation
+
+    repeated string features     = 6; // (optional) Rule based features
+
+}
+
+
+
+/*
+
+ * NOTE: enum values use C++ scoping rules, meaning that enum values are
+
+ * siblings of their type, not children of it. For example, "AUX" must be unique
+
+ * within "watson_nlp_interfaces", not just within "DependencyRelation", thus the use
+
+ * of the POS_ and DEP_ prefixes.
+
+ */
+
+
+
+/**
+
+ * Enum for the Universal POS tag set.
+
+ * CITE: http://universaldependencies.org/u/pos/index.html
+
+ */
+
+enum PartOfSpeech {
+
+    POS_UNSET = 0;  // Default value when no POS tagging performed
+
+    POS_ADJ   = 1;  // adjective
+
+    POS_ADP   = 2;  // adposition
+
+    POS_ADV   = 3;  // adverb
+
+    POS_AUX   = 4;  // auxiliary
+
+    POS_CCONJ = 5;  // coordinating conjunction
+
+    POS_DET   = 6;  // determiner
+
+    POS_INTJ  = 7;  // interjection
+
+    POS_NOUN  = 8;  // noun
+
+    POS_NUM   = 9;  // numeral
+
+    POS_PART  = 10; // particle
+
+    POS_PRON  = 11; // pronoun
+
+    POS_PROPN = 12; // proper noun
+
+    POS_PUNCT = 13; // punctuation
+
+    POS_SCONJ = 14; // subordinating conjunction
+
+    POS_SYM   = 15; // symbol
+
+    POS_VERB  = 16; // verb
+
+    POS_X     = 17; // other
+
+}
+
+
+
+/**
+
+ * Enum for the Universal Dependency Relation tag set.
+
+ * CITE: http://universaldependencies.org/u/dep/index.html
+
+ *
+
+ * NOTE: Subtypes were added to the data model later. Instead of commas,
+
+ * we use underscores here. This is why the numbers are in a weird order.
+
+ */
+
+enum DependencyRelation {
+
+    DEP_OTHER          = 0;  // other
+
+    DEP_ACL            = 1;  // clausal modifier of noun (adjectival clause)
+
+    DEP_ACL_RELCL      = 38; // relative clause modifier
+
+    DEP_ADVCL          = 2;  // adverbial clause modifier
+
+    DEP_ADVMOD         = 3;  // adverbial modifier
+
+    DEP_ADVMOD_EMPH    = 39; // emphasizing word, intensifier
+
+    DEP_ADVMOD_LMOD    = 40; // locative adverbial modifier
+
+    DEP_AMOD           = 4;  // adjectival modifier
+
+    DEP_APPOS          = 5;  // appositional modifier
+
+    DEP_AUX            = 6;  // auxiliary
+
+    DEP_AUX_PASS       = 41; // passive auxiliary
+
+    DEP_CASE           = 7;  // case marking
+
+    DEP_CC             = 8;  // coordinating conjunction
+
+    DEP_CC_PRECONJ     = 42; // preconjunct
+
+    DEP_CCOMP          = 9;  // clausal complement
+
+    DEP_CLF            = 10; // classifier
+
+    DEP_COMPOUND       = 11; // compound
+
+    DEP_COMPOUND_LVC   = 44; // light verb construction
+
+    DEP_COMPOUND_PRT   = 45; // phrasal verb particle
+
+    DEP_COMPOUND_REDUP = 46; // reduplicated compounds
+
+    DEP_COMPOUND_SVC   = 47; // serial verb compounds
+
+    DEP_CONJ           = 12; // conjunct
+
+    DEP_COP            = 13; // copula
+
+    DEP_CSUBJ          = 14; // clausal subject
+
+    DEP_CSUBJ_PASS     = 43; // clausal passive subject
+
+    DEP_DEP            = 15; // unspecified dependency
+
+    DEP_DET            = 16; // determiner
+
+    DEP_DET_NUMGOV     = 48; // pronominal quantifier governing the case of the noun
+
+    DEP_DET_NUMNOD     = 49; // pronominal quantifier agreeing in case with the noun
+
+    DEP_DET_POSS       = 50; // possessive determiner
+
+    DEP_DISCOURSE      = 17; // discourse element
+
+    DEP_DISLOCATED     = 18; // dislocated elements
+
+    DEP_EXPL           = 19; // expletive
+
+    DEP_EXPL_IMPERS    = 51; // impersonal expletive
+
+    DEP_EXPL_PASS      = 52; // reflexive pronoun used in reflexive passive
+
+    DEP_EXPL_PV        = 53; // reflexive clitic with an inherently reflexive verb
+
+    DEP_FIXED          = 20; // fixed multiword expression
+
+    DEP_FLAT           = 21; // flat multiword expression
+
+    DEP_FLAT_FOREIGN   = 54; // foreign words
+
+    DEP_FLAT_NAME      = 55; // names
+
+    DEP_GOESWITH       = 22; // goes with
+
+    DEP_IOBJ           = 23; // indirect object
+
+    DEP_LIST           = 24; // list
+
+    DEP_MARK           = 25; // marker
+
+    DEP_NMOD           = 26; // nominal modifier
+
+    DEP_NMOD_POSS      = 56; // possessive nominal modifier
+
+    DEP_NMOD_TMOD      = 57; // temporal modifier
+
+    DEP_NSUBJ          = 27; // nominal subject
+
+    DEP_NSUBJ_PASS     = 58; // passive nominal subject
+
+    DEP_NUMMOD         = 28; // numeric modifier
+
+    DEP_NUMMOD_GOV     = 59; // numeric modifier governing the case of the noun
+
+    DEP_OBJ            = 29; // object
+
+    DEP_OBL            = 30; // oblique nominal
+
+    DEP_OBL_AGENT      = 60; // agent modifier
+
+    DEP_OBL_ARG        = 61; // oblique argument
+
+    DEP_OBL_LMOD       = 62; // locative modifier
+
+    DEP_OBL_TMOD       = 63; // temporal modifier
+
+    DEP_ORPHAN         = 31; // orphan
+
+    DEP_PARATAXIS      = 32; // parataxis
+
+    DEP_PUNCT          = 33; // punctuation
+
+    DEP_REPARANDUM     = 34; // overridden disfluency
+
+    DEP_ROOT           = 35; // root
+
+    DEP_VOCATIVE       = 36; // vocative
+
+    DEP_XCOMP          = 37; // open clausal complements
+
+}
+
+
+
+/**
+
+ * Structure containing information needed for a dependency parse between tokens
+
+ * within a single document.
+
+ */
+
+message Dependency {
+
+    DependencyRelation relation = 1; // (required) Universal dependency label
+
+    uint32 identifier           = 2; // (required) Unique identifier for the token
+
+    uint32 head                 = 3; // (optional) Token id for the head of the dependency arc
+
+}
+
+
+
+/*-- Sentences ---------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a sentence and associated annotations.
+
+ **/
+
+message Sentence {
+
+    Span span = 1; // (required) Location of this sentence
+
+}
+
+
+
+/*-- Paragraphs --------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a paragraph and any associated annotations.
+
+ **/
+
+message Paragraph {
+
+    Span span = 1; // (required) Location of this paragraph
+
+}
+
+
+
+/*-- Parsers ----------------------------------------------------------------*/
+
+
+
+/**
+
+ * Syntax analysis parsers that can be invoked.
+
+ **/
+
+enum SyntaxParser {
+
+    SYNTAX_UNSET            = 0; // Unset
+
+    SYNTAX_TOKENIZE         = 1; // Word tokenization
+
+    SYNTAX_SENTENCE         = 2; // Sentence splitting
+
+    SYNTAX_LEMMA            = 3; // Lemmatization
+
+    SYNTAX_DEPENDENCY       = 4; // Dependency parsing
+
+    SYNTAX_PART_OF_SPEECH   = 5; // Part-of-speech tagging
+
+}
+
+
+
+message SyntaxParserSpec {
+
+    repeated SyntaxParser parsers = 1;
+
+}
+
+
+
+/*-- Documents ---------------------------------------------------------------*/
+
+
+
+/**
+
+ * Representation of a raw (unprocessed) document.
+
+ **/
+
+message RawDocument {
+
+    string text                                          = 1; // (required) Text contained by this document
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced this document
+
+}
+
+
+
+/**
+
+ * Representation of a document that has had syntax analysis applied
+
+ * potentially including tokenization, sentence splitting NP chunking,
+
+ * dependency parsing, paragraph splitting, et cetra.
+
+ **/
+
+message SyntaxPrediction {
+
+    string text                                          = 1; // (required) Text contained by this document
+
+    watson_core_data_model.common.ProducerId producer_id = 2; // (optional) Block that produced these annotations
+
+    repeated Token tokens                                = 3; // (optional) Split and annotated tokens
+
+    repeated Sentence sentences                          = 4; // (optional) Split and annotated sentences
+
+    repeated Paragraph paragraphs                        = 6; // (optional) Split and annotated paragraphs
+
+}
+
+
+
+
+
+message HTMLTagSpansList {
+
+    repeated Span span_list                              = 1;
+
+}
+
+
+
+/**
+
+ * Representation of an HTML document.
+
+ **/
+
+message DetagPrediction {
+
+    string html                                          = 1; // (required) HTML text contained by this document
+
+    string text                                          = 2; // Detagged contained by this document
+
+    repeated int32 offsets                               = 3; // Offsets between detagged text(index of list) to HTML text (value of index)
+
+                                                              // e.g. [4,5,6]:
+
+                                                              // text[0] -> html[4]
+
+                                                              // text[1] -> html[5]
+
+                                                              // text[2] -> html[6]
+
+    watson_core_data_model.common.ProducerId producer_id = 4; // (optional) Block that produced these annotations
+
+    repeated int32 tag_offsets                           = 5; // (optional) Offsets where the original HTML tags were located. Specifically, they point to the end of a tag (the index after ">" in "<tag>Text</tag>", so `tag_offsets = [4, 14]`). 
+
+                                                              // When detagging, multiple HTML tags could point to the same offset (for example when tags are nested "<title><p>This is text</title></p>"), which is why we have removed duplicates in this list.
+
+
+
+    map<string, HTMLTagSpansList> tag_names_to_spans     = 6; // (optional) A mapping of tag names to all the locations of such tag in the HTML document, represented as a list of spans. Mainly exposed for debugging purposes.
+
+                                                              // For example: `{'p': [(10, 16), (20, 22)]}` would tell us that the opening tag '<p>' is located at indices 10 and 20, and that the end tag '</p>'s are located at positions 16 and 22, closing the corresponding tags at 10 and 20, respectively.
+
+}

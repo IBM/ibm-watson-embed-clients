@@ -1,0 +1,127 @@
+/* ***************************************************************** */
+
+/*                                                                   */
+
+/* IBM Confidential                                                  */
+
+/* OCO Source Materials                                              */
+
+/*                                                                   */
+
+/* (C) Copyright IBM Corp. 2001, 2018                                */
+
+/*                                                                   */
+
+/* The source code for this program is not published or otherwise    */
+
+/* divested of its trade secrets, irrespective of what has been      */
+
+/* deposited with the U. S. Copyright Office                         */
+
+/*                                                                   */
+
+/* US Government Users Restricted Rights - Use, duplication or       */
+
+/* disclosure restricted by GSA ADP Schedule Contract with IBM Corp. */
+
+/*                                                                   */
+
+/* ***************************************************************** */
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.nlp;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/nlp";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+import "producer-types.proto";
+
+import "text-primitive-types.proto";
+
+
+
+/********************************************************************************
+
+ * This file houses protobuf interface definitions for emotion analysis       *
+
+ *******************************************************************************/
+
+
+
+
+
+/**
+
+ * The full emotion expressed in a given context
+
+ */
+
+message Emotion {
+
+    float anger           = 1; // (required) The score of the anger emotion label in the [0, 1] range
+
+    float disgust         = 2; // (required) The score of the disgust emotion label in the [0, 1] range
+
+    float fear            = 3; // (required) The score of the fear emotion label in the [0, 1] range
+
+    float joy             = 4; // (required) The score of the joy emotion label in the [0, 1] range
+
+    float sadness         = 5; // (required) The score of the sadness emotion label in the [0, 1] range
+
+}
+
+
+
+/**
+
+* An individual, atomic emotion mention over a given region of the input (could be a sentence, a paragraph, a section of text within a sentence, etc.)
+
+*/
+
+message EmotionMention {
+
+    Span span           = 1; // (required) The location of the region of interest within the input document
+
+    Emotion emotion     = 2; // (required) The emotion predictions associated with the span.
+
+}
+
+
+
+/**
+
+* An emotion prediction for either a document or a target
+
+*/
+
+message AggregatedEmotionPrediction {
+
+    Emotion emotion                                      = 1; // (optional) The overall aggregated emotions and respective aggregate confidence scores
+
+    string target                                        = 2; // (optional) The string representation of the target for this emotion.
+
+    repeated EmotionMention emotion_mentions             = 3; // (optional) Individual atomic emotions that went into producing the aggregated emotion
+
+}
+
+
+
+/**
+
+* An emotion prediction for a document and zero or more targets.
+
+*/
+
+message EmotionPrediction {
+
+    repeated AggregatedEmotionPrediction emotion_predictions  = 1; // List of emotions per target
+
+    watson_core_data_model.common.ProducerId producer_id      = 2; // (optional) The block that produced this emotion prediction
+
+}

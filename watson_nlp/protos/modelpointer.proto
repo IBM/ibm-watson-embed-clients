@@ -1,0 +1,37 @@
+
+
+/*------------------------------------------------------------------------------
+
+ * AUTO GENERATED
+
+ *----------------------------------------------------------------------------*/
+
+
+
+syntax = "proto3";
+
+package watson_core_data_model.runtime;
+
+option go_package = "github.ibm.com/ai-foundation/watson_nlp_runtime_client/watson_core_data_model/runtime";
+
+option java_package = "com.ibm.watson.runtime.nlp";
+
+option java_multiple_files = true;
+
+
+
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+
+
+message ModelPointer {
+
+
+
+  /*-- fields --*/
+
+  string model_id = 1;
+
+}
