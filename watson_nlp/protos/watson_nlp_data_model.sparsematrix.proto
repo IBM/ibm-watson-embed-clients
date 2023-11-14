@@ -1,0 +1,21 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message SparseMatrix {
+
+  /*-- fields --*/
+  repeated double data = 1;
+  repeated uint32 indices = 2;
+  repeated uint32 indptr = 3;
+  uint32 rows = 4;
+  uint32 cols = 5;
+  string dtype = 6;
+}

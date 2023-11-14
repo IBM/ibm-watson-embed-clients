@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "caikit_data_model.common.producerid.proto";
+import "watson_nlp_data_model.aggregatedemotionprediction.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message EmotionPrediction {
+
+  /*-- fields --*/
+  repeated watson_nlp_data_model.AggregatedEmotionPrediction emotion_predictions = 1;
+  caikit_data_model.common.ProducerId producer_id = 2;
+}

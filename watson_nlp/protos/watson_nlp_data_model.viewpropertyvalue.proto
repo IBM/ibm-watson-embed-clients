@@ -1,0 +1,35 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.propertylistvaluebool.proto";
+import "watson_nlp_data_model.propertylistvaluefloat.proto";
+import "watson_nlp_data_model.propertylistvalueint.proto";
+import "watson_nlp_data_model.propertylistvaluespan.proto";
+import "watson_nlp_data_model.propertylistvaluestr.proto";
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message ViewPropertyValue {
+
+  /*-- fields --*/
+
+  /*-- oneofs --*/
+  oneof value {
+    string str_val = 1;
+    double float_val = 2;
+    int32 int_val = 3;
+    bool bool_val = 4;
+    watson_nlp_data_model.Span span_val = 5;
+    watson_nlp_data_model.PropertyListValueStr list_str_val = 6;
+    watson_nlp_data_model.PropertyListValueFloat list_float_val = 7;
+    watson_nlp_data_model.PropertyListValueInt list_int_val = 8;
+    watson_nlp_data_model.PropertyListValueBool list_bool_val = 9;
+    watson_nlp_data_model.PropertyListValueSpan list_span_val = 10;
+  }
+}

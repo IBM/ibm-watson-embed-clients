@@ -1,0 +1,20 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Keyword {
+
+  /*-- fields --*/
+  string text = 1;
+  double relevance = 2;
+  repeated watson_nlp_data_model.Span mentions = 3;
+  uint32 count = 4;
+}

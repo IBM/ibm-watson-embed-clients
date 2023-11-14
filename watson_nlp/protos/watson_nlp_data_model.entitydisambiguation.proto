@@ -1,0 +1,18 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message EntityDisambiguation {
+
+  /*-- fields --*/
+  string name = 1;
+  repeated string subtypes = 2;
+  string dbpedia_resource = 3;
+}

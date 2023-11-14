@@ -1,0 +1,17 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package caikit.runtime.WatsonNlp;
+import "watson_nlp_data_model.rawdocument.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message DetagTaskRequest {
+
+  /*-- fields --*/
+  watson_nlp_data_model.RawDocument raw_document = 1;
+}

@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.relevanttext.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Category {
+
+  /*-- fields --*/
+  repeated string labels = 1;
+  double score = 2;
+  repeated watson_nlp_data_model.RelevantText explanation = 3;
+}

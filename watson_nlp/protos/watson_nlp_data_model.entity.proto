@@ -1,0 +1,23 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.entitydisambiguation.proto";
+import "watson_nlp_data_model.entitymention.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Entity {
+
+  /*-- fields --*/
+  repeated watson_nlp_data_model.EntityMention mentions = 1;
+  string text = 2;
+  string type = 3;
+  double confidence = 5;
+  double relevance = 6;
+  watson_nlp_data_model.EntityDisambiguation disambiguation = 7;
+}

@@ -1,0 +1,27 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package caikit.runtime.WatsonNlp;
+import "caikit_data_model.common.intsequence.proto";
+import "caikit_data_model.common.strsequence.proto";
+import "watson_nlp_data_model.rawdocument.proto";
+import "watson_nlp_data_model.syntaxparserspec.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message SyntaxTaskRequest {
+
+  /*-- fields --*/
+  watson_nlp_data_model.RawDocument raw_document = 1;
+
+  /*-- oneofs --*/
+  oneof parsers {
+    caikit_data_model.common.StrSequence parsers_str_sequence = 2;
+    caikit_data_model.common.IntSequence parsers_int_sequence = 3;
+    watson_nlp_data_model.SyntaxParserSpec parsers_syntaxparserspec = 4;
+  }
+}

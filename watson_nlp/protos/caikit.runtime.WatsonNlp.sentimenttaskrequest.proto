@@ -1,0 +1,30 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package caikit.runtime.WatsonNlp;
+import "caikit_data_model.common.strsequence.proto";
+import "watson_nlp_data_model.rawdocument.proto";
+import "watson_nlp_data_model.targetmentionsprediction.proto";
+import "watson_nlp_data_model.targetphrases.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message SentimentTaskRequest {
+
+  /*-- fields --*/
+  watson_nlp_data_model.RawDocument raw_document = 1;
+  optional string language_code = 2;
+  optional bool document_sentiment = 3;
+  optional watson_nlp_data_model.TargetMentionsPrediction target_mentions = 4;
+  optional bool show_neutral_scores = 7;
+
+  /*-- oneofs --*/
+  oneof target_phrases {
+    watson_nlp_data_model.TargetPhrases target_phrases_targetphrases = 5;
+    caikit_data_model.common.StrSequence target_phrases_str_sequence = 6;
+  }
+}

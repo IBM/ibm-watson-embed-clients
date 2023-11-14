@@ -1,0 +1,31 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- ENUMS -------------------------------------------------------------------*/
+
+enum PartOfSpeech {
+  POS_UNSET = 0;
+  POS_ADJ = 1;
+  POS_ADP = 2;
+  POS_ADV = 3;
+  POS_AUX = 4;
+  POS_CCONJ = 5;
+  POS_DET = 6;
+  POS_INTJ = 7;
+  POS_NOUN = 8;
+  POS_NUM = 9;
+  POS_PART = 10;
+  POS_PRON = 11;
+  POS_PROPN = 12;
+  POS_PUNCT = 13;
+  POS_SCONJ = 14;
+  POS_SYM = 15;
+  POS_VERB = 16;
+  POS_X = 17;
+}

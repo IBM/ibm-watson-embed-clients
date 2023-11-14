@@ -1,0 +1,17 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message ClassificationTrainRecord {
+
+  /*-- fields --*/
+  string text = 1;
+  repeated string labels = 2;
+}

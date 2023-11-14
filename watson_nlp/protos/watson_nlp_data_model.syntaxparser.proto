@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- ENUMS -------------------------------------------------------------------*/
+
+enum SyntaxParser {
+  SYNTAX_UNSET = 0;
+  SYNTAX_TOKENIZE = 1;
+  SYNTAX_SENTENCE = 2;
+  SYNTAX_LEMMA = 3;
+  SYNTAX_DEPENDENCY = 4;
+  SYNTAX_PART_OF_SPEECH = 5;
+}

@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message EntityMentionAnnotation {
+
+  /*-- fields --*/
+  string text = 1;
+  string type = 2;
+  watson_nlp_data_model.Span location = 3;
+}

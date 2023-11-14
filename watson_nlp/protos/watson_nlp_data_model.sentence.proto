@@ -1,0 +1,17 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Sentence {
+
+  /*-- fields --*/
+  watson_nlp_data_model.Span span = 1;
+}

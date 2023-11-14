@@ -1,0 +1,24 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "caikit_data_model.common.producerid.proto";
+import "watson_nlp_data_model.entitymention.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message RelationMention {
+
+  /*-- fields --*/
+  string type = 1;
+  watson_nlp_data_model.EntityMention mention1 = 2;
+  watson_nlp_data_model.EntityMention mention2 = 3;
+  double confidence = 4;
+  caikit_data_model.common.ProducerId producer_id = 5;
+  string subtype = 6;
+  string text = 7;
+}

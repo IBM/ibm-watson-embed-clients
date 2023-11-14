@@ -1,0 +1,24 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "caikit_data_model.common.producerid.proto";
+import "watson_nlp_data_model.paragraph.proto";
+import "watson_nlp_data_model.sentence.proto";
+import "watson_nlp_data_model.token.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message SyntaxPrediction {
+
+  /*-- fields --*/
+  string text = 1;
+  optional caikit_data_model.common.ProducerId producer_id = 2;
+  repeated watson_nlp_data_model.Token tokens = 3;
+  repeated watson_nlp_data_model.Sentence sentences = 4;
+  repeated watson_nlp_data_model.Paragraph paragraphs = 5;
+}

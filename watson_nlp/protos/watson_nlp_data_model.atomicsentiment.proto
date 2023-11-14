@@ -1,0 +1,20 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.sentimentlabel.proto";
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message AtomicSentiment {
+
+  /*-- fields --*/
+  watson_nlp_data_model.Span span = 1;
+  double score = 2;
+  watson_nlp_data_model.SentimentLabel label = 3;
+}

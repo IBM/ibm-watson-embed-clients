@@ -1,0 +1,20 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.entitymentionannotation.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message EntityMentionsTrainRecord {
+
+  /*-- fields --*/
+  string text = 1;
+  repeated watson_nlp_data_model.EntityMentionAnnotation mentions = 2;
+  string language_code = 3;
+  uint64 id = 4;
+}

@@ -1,0 +1,18 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.viewproperty.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message View {
+
+  /*-- fields --*/
+  string name = 1;
+  repeated watson_nlp_data_model.ViewProperty properties = 2;
+}

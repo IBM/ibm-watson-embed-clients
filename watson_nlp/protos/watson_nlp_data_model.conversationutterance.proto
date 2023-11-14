@@ -1,0 +1,20 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.speaker.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message ConversationUtterance {
+
+  /*-- fields --*/
+  watson_nlp_data_model.Speaker speaker = 1;
+  string utterance = 2;
+  string time = 3;
+  int64 turn = 4;
+}

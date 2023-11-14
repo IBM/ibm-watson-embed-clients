@@ -1,0 +1,20 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.sentimentlabel.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Sentiment {
+
+  /*-- fields --*/
+  double score = 1;
+  watson_nlp_data_model.SentimentLabel label = 2;
+  bool mixed = 3;
+  string target = 4;
+}

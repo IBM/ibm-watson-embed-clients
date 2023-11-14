@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "caikit_data_model.common.producerid.proto";
+import "watson_nlp_data_model.view.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message RulesPrediction {
+
+  /*-- fields --*/
+  caikit_data_model.common.ProducerId producer_id = 1;
+  repeated watson_nlp_data_model.View views = 2;
+}

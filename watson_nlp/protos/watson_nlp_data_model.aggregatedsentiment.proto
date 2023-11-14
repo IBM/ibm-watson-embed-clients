@@ -1,0 +1,21 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.sentimentlabel.proto";
+import "watson_nlp_data_model.sentimentmention.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message AggregatedSentiment {
+
+  /*-- fields --*/
+  double score = 1;
+  watson_nlp_data_model.SentimentLabel label = 2;
+  bool mixed = 3;
+  repeated watson_nlp_data_model.SentimentMention sentiment_mentions = 4;
+}

@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.viewpropertyvalue.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message ViewProperty {
+
+  /*-- nested messages --*/
+
+  /*-- fields --*/
+  map<string, watson_nlp_data_model.ViewPropertyValue> aql_property = 1;
+}

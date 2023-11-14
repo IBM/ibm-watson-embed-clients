@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.dependencyrelation.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Dependency {
+
+  /*-- fields --*/
+  watson_nlp_data_model.DependencyRelation relation = 1;
+  uint32 identifier = 2;
+  optional uint32 head = 3;
+}

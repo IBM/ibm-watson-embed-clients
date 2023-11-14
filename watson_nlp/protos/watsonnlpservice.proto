@@ -1,0 +1,58 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package caikit.runtime.WatsonNlp;
+import "caikit.runtime.WatsonNlp.categoriestaskrequest.proto";
+import "caikit.runtime.WatsonNlp.classificationtaskrequest.proto";
+import "caikit.runtime.WatsonNlp.conceptstaskrequest.proto";
+import "caikit.runtime.WatsonNlp.detagtaskrequest.proto";
+import "caikit.runtime.WatsonNlp.emotiontaskrequest.proto";
+import "caikit.runtime.WatsonNlp.entitymentionstaskrequest.proto";
+import "caikit.runtime.WatsonNlp.keywordstaskrequest.proto";
+import "caikit.runtime.WatsonNlp.langdetecttaskrequest.proto";
+import "caikit.runtime.WatsonNlp.nounphrasestaskrequest.proto";
+import "caikit.runtime.WatsonNlp.relationstaskrequest.proto";
+import "caikit.runtime.WatsonNlp.rulestaskrequest.proto";
+import "caikit.runtime.WatsonNlp.sentimenttaskrequest.proto";
+import "caikit.runtime.WatsonNlp.syntaxtaskrequest.proto";
+import "caikit.runtime.WatsonNlp.targetssentimenttaskrequest.proto";
+import "caikit.runtime.WatsonNlp.topicstaskrequest.proto";
+import "watson_nlp_data_model.categoriesprediction.proto";
+import "watson_nlp_data_model.classificationprediction.proto";
+import "watson_nlp_data_model.conceptsprediction.proto";
+import "watson_nlp_data_model.detagprediction.proto";
+import "watson_nlp_data_model.emotionprediction.proto";
+import "watson_nlp_data_model.entitymentionsprediction.proto";
+import "watson_nlp_data_model.keywordsprediction.proto";
+import "watson_nlp_data_model.langdetectprediction.proto";
+import "watson_nlp_data_model.nounphrasesprediction.proto";
+import "watson_nlp_data_model.relationsprediction.proto";
+import "watson_nlp_data_model.rulesprediction.proto";
+import "watson_nlp_data_model.sentimentprediction.proto";
+import "watson_nlp_data_model.syntaxprediction.proto";
+import "watson_nlp_data_model.targetssentimentprediction.proto";
+import "watson_nlp_data_model.topicsprediction.proto";
+
+
+/*-- SERVICES ----------------------------------------------------------------*/
+
+service WatsonNlpService {
+  rpc CategoriesTaskPredict(caikit.runtime.WatsonNlp.CategoriesTaskRequest) returns (watson_nlp_data_model.CategoriesPrediction);
+  rpc ClassificationTaskPredict(caikit.runtime.WatsonNlp.ClassificationTaskRequest) returns (watson_nlp_data_model.ClassificationPrediction);
+  rpc ConceptsTaskPredict(caikit.runtime.WatsonNlp.ConceptsTaskRequest) returns (watson_nlp_data_model.ConceptsPrediction);
+  rpc DetagTaskPredict(caikit.runtime.WatsonNlp.DetagTaskRequest) returns (watson_nlp_data_model.DetagPrediction);
+  rpc EmotionTaskPredict(caikit.runtime.WatsonNlp.EmotionTaskRequest) returns (watson_nlp_data_model.EmotionPrediction);
+  rpc EntityMentionsTaskPredict(caikit.runtime.WatsonNlp.EntityMentionsTaskRequest) returns (watson_nlp_data_model.EntityMentionsPrediction);
+  rpc KeywordsTaskPredict(caikit.runtime.WatsonNlp.KeywordsTaskRequest) returns (watson_nlp_data_model.KeywordsPrediction);
+  rpc LangDetectTaskPredict(caikit.runtime.WatsonNlp.LangDetectTaskRequest) returns (watson_nlp_data_model.LangDetectPrediction);
+  rpc NounPhrasesTaskPredict(caikit.runtime.WatsonNlp.NounPhrasesTaskRequest) returns (watson_nlp_data_model.NounPhrasesPrediction);
+  rpc RelationsTaskPredict(caikit.runtime.WatsonNlp.RelationsTaskRequest) returns (watson_nlp_data_model.RelationsPrediction);
+  rpc RulesTaskPredict(caikit.runtime.WatsonNlp.RulesTaskRequest) returns (watson_nlp_data_model.RulesPrediction);
+  rpc SentimentTaskPredict(caikit.runtime.WatsonNlp.SentimentTaskRequest) returns (watson_nlp_data_model.SentimentPrediction);
+  rpc SyntaxTaskPredict(caikit.runtime.WatsonNlp.SyntaxTaskRequest) returns (watson_nlp_data_model.SyntaxPrediction);
+  rpc TargetsSentimentTaskPredict(caikit.runtime.WatsonNlp.TargetsSentimentTaskRequest) returns (watson_nlp_data_model.TargetsSentimentPrediction);
+  rpc TopicsTaskPredict(caikit.runtime.WatsonNlp.TopicsTaskRequest) returns (watson_nlp_data_model.TopicsPrediction);
+}

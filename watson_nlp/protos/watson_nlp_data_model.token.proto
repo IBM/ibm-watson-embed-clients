@@ -1,0 +1,23 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.dependency.proto";
+import "watson_nlp_data_model.partofspeech.proto";
+import "watson_nlp_data_model.span.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Token {
+
+  /*-- fields --*/
+  watson_nlp_data_model.Span span = 1;
+  optional string lemma = 2;
+  optional watson_nlp_data_model.PartOfSpeech part_of_speech = 3;
+  optional watson_nlp_data_model.Dependency dependency = 4;
+  repeated string features = 5;
+}

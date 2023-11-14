@@ -1,0 +1,22 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.entity.proto";
+import "watson_nlp_data_model.relationmention.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message Relation {
+
+  /*-- fields --*/
+  watson_nlp_data_model.Entity entity1 = 1;
+  watson_nlp_data_model.Entity entity2 = 2;
+  repeated watson_nlp_data_model.RelationMention relation_mentions = 3;
+  string type = 4;
+  double confidence = 5;
+}

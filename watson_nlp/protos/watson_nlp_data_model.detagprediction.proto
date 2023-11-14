@@ -1,0 +1,25 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "caikit_data_model.common.producerid.proto";
+import "watson_nlp_data_model.htmltagspanslist.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message DetagPrediction {
+
+  /*-- nested messages --*/
+
+  /*-- fields --*/
+  string html = 1;
+  string text = 2;
+  repeated int64 offsets = 3;
+  repeated int64 tag_offsets = 4;
+  map<string, watson_nlp_data_model.HTMLTagSpansList> tag_names_to_spans = 5;
+  optional caikit_data_model.common.ProducerId producer_id = 6;
+}

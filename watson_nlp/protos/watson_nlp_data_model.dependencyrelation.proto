@@ -1,0 +1,77 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+
+
+/*-- ENUMS -------------------------------------------------------------------*/
+
+enum DependencyRelation {
+  DEP_OTHER = 0;
+  DEP_ACL = 1;
+  DEP_ADVCL = 2;
+  DEP_ADVMOD = 3;
+  DEP_AMOD = 4;
+  DEP_APPOS = 5;
+  DEP_AUX = 6;
+  DEP_CASE = 7;
+  DEP_CC = 8;
+  DEP_CCOMP = 9;
+  DEP_CLF = 10;
+  DEP_COMPOUND = 11;
+  DEP_CONJ = 12;
+  DEP_COP = 13;
+  DEP_CSUBJ = 14;
+  DEP_DEP = 15;
+  DEP_DET = 16;
+  DEP_DISCOURSE = 17;
+  DEP_DISLOCATED = 18;
+  DEP_EXPL = 19;
+  DEP_FIXED = 20;
+  DEP_FLAT = 21;
+  DEP_GOESWITH = 22;
+  DEP_IOBJ = 23;
+  DEP_LIST = 24;
+  DEP_MARK = 25;
+  DEP_NMOD = 26;
+  DEP_NSUBJ = 27;
+  DEP_NUMMOD = 28;
+  DEP_OBJ = 29;
+  DEP_OBL = 30;
+  DEP_ORPHAN = 31;
+  DEP_PARATAXIS = 32;
+  DEP_PUNCT = 33;
+  DEP_REPARANDUM = 34;
+  DEP_ROOT = 35;
+  DEP_VOCATIVE = 36;
+  DEP_XCOMP = 37;
+  DEP_ACL_RELCL = 38;
+  DEP_ADVMOD_EMPH = 39;
+  DEP_ADVMOD_LMOD = 40;
+  DEP_AUX_PASS = 41;
+  DEP_CC_PRECONJ = 42;
+  DEP_CSUBJ_PASS = 43;
+  DEP_COMPOUND_LVC = 44;
+  DEP_COMPOUND_PRT = 45;
+  DEP_COMPOUND_REDUP = 46;
+  DEP_COMPOUND_SVC = 47;
+  DEP_DET_NUMGOV = 48;
+  DEP_DET_NUMNOD = 49;
+  DEP_DET_POSS = 50;
+  DEP_EXPL_IMPERS = 51;
+  DEP_EXPL_PASS = 52;
+  DEP_EXPL_PV = 53;
+  DEP_FLAT_FOREIGN = 54;
+  DEP_FLAT_NAME = 55;
+  DEP_NMOD_POSS = 56;
+  DEP_NMOD_TMOD = 57;
+  DEP_NSUBJ_PASS = 58;
+  DEP_NUMMOD_GOV = 59;
+  DEP_OBL_AGENT = 60;
+  DEP_OBL_ARG = 61;
+  DEP_OBL_LMOD = 62;
+  DEP_OBL_TMOD = 63;
+}

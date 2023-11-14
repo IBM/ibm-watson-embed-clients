@@ -1,0 +1,19 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package caikit.runtime.WatsonNlp;
+import "watson_nlp_data_model.rawdocument.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message CategoriesTaskRequest {
+
+  /*-- fields --*/
+  watson_nlp_data_model.RawDocument raw_document = 1;
+  optional bool explanation = 2;
+  optional int64 limit = 3;
+}

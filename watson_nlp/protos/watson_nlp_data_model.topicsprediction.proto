@@ -1,0 +1,17 @@
+
+/*------------------------------------------------------------------------------
+ * AUTO GENERATED
+ *----------------------------------------------------------------------------*/
+
+syntax = "proto3";
+package watson_nlp_data_model;
+import "watson_nlp_data_model.topic.proto";
+
+
+/*-- MESSAGES ----------------------------------------------------------------*/
+
+message TopicsPrediction {
+
+  /*-- fields --*/
+  repeated watson_nlp_data_model.Topic topics = 1;
+}
