@@ -3,7 +3,7 @@
 #
 # This phase builds the python wheel
 ##
-FROM python:3.9-slim as python-client
+FROM python:3.10-slim as python-client
 
 ARG LIB_NAME
 ARG PYTHON_RELEASE_VERSION

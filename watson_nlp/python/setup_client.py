@@ -50,13 +50,29 @@ with open(os.path.join(base_dir, "requirements.txt")) as filehandle:
 # `{library}_runtime_client`. We use the `package_dir` map to tell setuptools to look in a
 # different directory.
 client_lib_name = f"{clean_library_name(lib_name)}_runtime_client"
+package_dir = {
+    client_lib_name: "generated",
+    "watson_nlp_data_model": "generated/watson_nlp_data_model",
+    "caikit_data_model": "generated/caikit_data_model",
+    "caikit_data_model.common": "generated/caikit_data_model/common",
+    "caikit_data_model.common.runtime": "generated/caikit_data_model/common/runtime",
+    "caikit_data_model.runtime": "generated/caikit_data_model/runtime",
+    "caikit.runtime.WatsonNlp": "generated/caikit/runtime/WatsonNlp",
+}
+packages=[client_lib_name,
+          "caikit.runtime.WatsonNlp",
+          "watson_nlp_data_model", 
+          "caikit_data_model", 
+          "caikit_data_model.runtime", 
+          "caikit_data_model.common", 
+          "caikit_data_model.common.runtime"]
 setup(
     name=client_lib_name,
     version=version,
     description=f"Watson Embedded AI runtime client library for {lib_name.capitalize()}",
     install_requires=requirements,
-    package_dir={client_lib_name: "generated"},
-    packages=[client_lib_name],
+    package_dir=package_dir,
+    packages=packages,
     license="Apache 2.0",
     author="IBM Watson Embed",
     author_email="aifound@us.ibm.com",

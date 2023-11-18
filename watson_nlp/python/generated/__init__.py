@@ -45,6 +45,7 @@ with local_desc_pool() as client_desc:
     with local_import_path():
         for f_name in os.listdir(os.path.dirname(__file__)):
             name = os.path.splitext(f_name)[0]
-            if name.endswith("_pb2") or name.endswith("_pb2_grpc"):
+            # we only want to import the service pb2 grpc files
+            if name.endswith("_pb2") or name.endswith("service_pb2_grpc"):
                 assert name not in globals()
                 globals()[name] = importlib.import_module(name)
