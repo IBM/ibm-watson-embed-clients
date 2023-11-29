@@ -18,7 +18,7 @@ jobs:
         run: VERSION="${{ env.RELEASE_VERSION }}" RELEASE_TYPE=node ./ci/release.sh
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 20
           registry-url: https://registry.npmjs.org/
       - run: npm publish node_dir_watson_nlp/ --access public
         env:

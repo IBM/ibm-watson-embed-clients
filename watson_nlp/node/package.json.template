@@ -11,5 +11,9 @@
   "bugs": {
     "url": "https://github.com/IBM/ibm-watson-embed-clients/issues"
   },
-  "homepage": "https://github.com/IBM/ibm-watson-embed-clients"
+  "homepage": "https://github.com/IBM/ibm-watson-embed-clients",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IBM/ibm-watson-embed-clients.git"
+  }
 }
