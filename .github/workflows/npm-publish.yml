@@ -16,11 +16,11 @@ jobs:
         run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
       - name: Release script
         run: VERSION="${{ env.RELEASE_VERSION }}" RELEASE_TYPE=node ./ci/release.sh
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
-      - run: npm publish node_dir_watson_nlp/ --access public
+      - run: npm publish node_dir_watson_nlp/ --access public 
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
       # - run: npm publish node_dir_other_lib/
